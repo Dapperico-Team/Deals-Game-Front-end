@@ -1,0 +1,8 @@
+.image {
+  background: radial-gradient(
+      160.51% 123.88% at -5.25% 0%,
+      #d410cc 0%,
+      #1d0e34 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}

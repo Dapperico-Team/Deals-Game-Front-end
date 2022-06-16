@@ -1,22 +1,22 @@
 import React, { useContext } from "react";
 import ThemeToggle from "./ThemeToggle";
-import "./test.css";
 import Logo from "../asset/logoLight";
 import LogoText from "../asset/logoTextLight.js";
 import { ThemeContext } from "../context/ThemeContext";
+import Button from "./button/Connect";
 
 const Navbar = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <header className="flex items-end justify-between pt-[50px] px-[42px] bg-primary max-w-[1440px]">
+    <header className=" container mx-auto flex items-end justify-between pt-[50px] p-6 lg:px-[42px] bg-primary max-w-[1440px]">
       <div className=" flex space-x-[10.52px] ">
         <Logo theme={theme} />
         <LogoText theme={theme} />
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="items-center justify-between hidden lg:flex ">
         <nav>
-          <ul className="flex space-x-[25px]">
+          <ul className="flex space-x-[25px]  font-sans ">
             <li>Get your ticket</li>
             <li>Finished rounds</li>
             <li>How it works</li>
@@ -29,7 +29,7 @@ const Navbar = () => {
             <ThemeToggle />
           </div>
           <div>
-            <button className="test"> connectwallet</button>
+            <Button />
           </div>
         </div>
       </div>
