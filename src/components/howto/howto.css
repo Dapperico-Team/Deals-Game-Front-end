@@ -1,4 +1,5 @@
 .element {
+  position: "absolute";
   background-image: url(../../asset/bg.svg);
 }
 

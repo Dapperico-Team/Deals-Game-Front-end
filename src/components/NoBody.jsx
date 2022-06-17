@@ -1,5 +1,5 @@
 import React from "react";
-import poly from "../asset/PolygonAbout.svg";
+import poly from "../asset/noBodyPolygon.svg";
 import Image from "../asset/about.png";
 
 const AboutUs = () => {
@@ -13,7 +13,7 @@ const AboutUs = () => {
           <img
             src={poly}
             alt="polygon"
-            className=" hidden left-0 xl:flex  lg:-mt-16 w-[499.58px] h-[555.4px]"
+            className=" hidden right-0 xl:flex  lg:-mt-16 w-[499.58px] h-[555.4px]"
           />
           <img
             src={Image}
