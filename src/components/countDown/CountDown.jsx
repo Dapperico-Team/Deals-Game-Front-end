@@ -1,6 +1,6 @@
 import React from "react";
 import Countdown, { zeroPad } from "react-countdown";
-import Circle from "./Circle";
+import Circle from "../Circle";
 import "./count.css";
 
 const CountDown = () => {
