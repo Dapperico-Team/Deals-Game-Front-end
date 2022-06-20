@@ -28,6 +28,8 @@
 .dark {
   --color-bg-primary: #161f37;
 
+  --color-bg-footer: #0a1226;
+
   --color-bg-secondary: #283141;
   --color-text-primary: #ffffff;
   --color-text-secondary: #2c2c2c;
@@ -38,6 +40,9 @@
     #d410cc 0%,
     #1d0e34 100%
   );
+  --color-bg-card: #2c2c2c;
+  --color-bg-title: #ebedf6;
+  --color-bg-shape: #ffffff80;
 }
 
 .light {
@@ -46,7 +51,11 @@
   --color-text-primary: #2d3748;
   --color-text-secondary: #4a5568;
   --color-text-accent: #9e0091;
+  --color-bg-footer: #ebedf6;
 
   --color-bg-input: #edf2f7;
   --color-bg-button: #2b6cb0;
+  --color-bg-card: #ffff;
+  --color-bg-title: #5b2973;
+  --color-bg-shape: #9e009180;
 }

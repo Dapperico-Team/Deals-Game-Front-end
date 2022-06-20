@@ -8,6 +8,9 @@ import HowTo from "./components/howto/HowTo";
 import Calculate from "./components/Calculate";
 import Process from "./components/process/Process";
 import NoBody from "./components/NoBody";
+import Won from "./components/won/Won";
+import Footer from "./components/Footer";
+import GetNow from "./components/GetNow";
 
 function App() {
   return (
@@ -16,10 +19,13 @@ function App() {
       <Hero />
       <AboutUs />
       <CountDown />
+      <GetNow />
       <HowTo />
       <Calculate />
       <Process />
       <NoBody />
+      <Won />
+      <Footer />
     </ThemeProvider>
   );
 }

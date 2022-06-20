@@ -1,0 +1,5 @@
+.shape {
+  display: "block";
+  background: linear-gradient(180deg, #ffe68d 0%, #d9a913 100%);
+  border-radius: 40px;
+}

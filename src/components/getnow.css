@@ -1,0 +1,18 @@
+.card {
+  background: radial-gradient(
+    160.51% 123.88% at -5.25% 0%,
+    #d410cc 0%,
+    #1d0e34 100%
+  );
+  -webkit-mask: radial-gradient(52px, #0000 98%, #000) 10000% 10000%/99.5% 89.9%;
+}
+/* .card:before {
+  -webkit-mask: radial-gradient(20px, #0000 98%, #000) 300% 300% /
+    calc(100% / 1.2) calc(100% / 1.2);
+} */
+/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+
+.card-dark {
+  background-color: #fff;
+  -webkit-mask: radial-gradient(52px, #0000 98%, #000) 10000% 10000%/99.5% 89.9%;
+}
