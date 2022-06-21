@@ -1,5 +1,5 @@
 import React from "react";
-import HeroImage from "../../asset/Hero.png";
+// import HeroImage from "../../asset/Hero.png";
 import "./hero.css";
 import Buy from "../button/Buy";
 

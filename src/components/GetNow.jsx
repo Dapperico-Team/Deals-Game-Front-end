@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Poly from "../asset/getnow.js";
-import Image from "../asset/about.png";
+
 import dashed from "../asset/dashLine.svg";
 import Buy from "./button/Buy";
 import Down from "../asset/ArrowDown";

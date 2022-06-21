@@ -5,7 +5,7 @@ import Win from "../../asset/winning criteria.png";
 const Process = () => {
   return (
     <>
-      <div className="w-full h-full mx-auto mt-20 back">
+      <div className="w-full max-w-[1440px] h-full mx-auto mt-20 back">
         <section>
           <div class="container space-y-10 flex flex-col items-center mx-auto px-6 pt-24 pb-32 lg:flex-row ">
             <div class="flex flex-col items-start md:w-1/2">

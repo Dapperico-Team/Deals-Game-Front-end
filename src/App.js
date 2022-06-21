@@ -11,6 +11,7 @@ import NoBody from "./components/NoBody";
 import Won from "./components/won/Won";
 import Footer from "./components/Footer";
 import GetNow from "./components/GetNow";
+import Winners from "./components/Winners";
 
 function App() {
   return (
@@ -20,11 +21,13 @@ function App() {
       <AboutUs />
       <CountDown />
       <GetNow />
+      <Winners />
+      <Won />
       <HowTo />
       <Calculate />
       <Process />
       <NoBody />
-      <Won />
+
       <Footer />
     </ThemeProvider>
   );

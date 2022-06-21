@@ -5,7 +5,7 @@ import Button from "../button/Connect";
 
 const Won = () => {
   return (
-    <section className="mx-auto  mt-72">
+    <section className="mx-auto max-w-[1440px]  mt-72">
       <div className="flex items-center justify-center w-full ">
         <div className="relative w-2/3 h-[161.84px] shape  ">
           <img

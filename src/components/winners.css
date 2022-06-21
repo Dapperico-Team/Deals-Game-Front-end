@@ -1,0 +1,19 @@
+.card-slide {
+  -webkit-mask: radial-gradient(30px, #0000 97%, #000) 10000% 10000%/99.5%
+    90.33%;
+}
+.slick-center {
+  transform: translateY(50px);
+  transition: all 0.4s;
+}
+/* .slick-slide {
+  margin: 0 27px 0 0;
+}
+.slick-list {
+  margin: 0 -50px 0 0;
+} */
+
+.slick-slider .slick-slide {
+  padding: 0 15px;
+  margin: 0 0 50px 0;
+}

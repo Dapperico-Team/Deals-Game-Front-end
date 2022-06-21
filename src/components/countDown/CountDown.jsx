@@ -72,7 +72,7 @@ const CountDown = () => {
   return (
     <section className="container mx-auto ">
       <div className="flex flex-col items-center justify-center">
-        <Countdown date={"2022-06-19T01:02:03"} renderer={renderer} />
+        <Countdown date={"2022-06-30T01:02:03"} renderer={renderer} />
         <p className="font-mono text-[50px] mt-[23.49px]"> until the draw</p>
       </div>
     </section>

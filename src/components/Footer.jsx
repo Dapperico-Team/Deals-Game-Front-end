@@ -8,7 +8,7 @@ import { ThemeContext } from "../context/ThemeContext";
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <footer className="container mx-auto  flex flex-col  bottom-0 w-full h-[372px] bg-footer  ">
+    <footer className=" max-w-[1440px] mx-auto  flex flex-col  bottom-0 w-full h-[372px] bg-footer  ">
       <div className="flex items-start justify-around mt-[125px] h-3/4 ">
         <div>
           <Logo theme={theme} />
