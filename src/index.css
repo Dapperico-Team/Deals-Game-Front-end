@@ -22,7 +22,7 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-primary text-primary;
+  @apply bg-primary text-primary  overflow-x-hidden;
 }
 
 .dark {
@@ -43,10 +43,12 @@
   --color-bg-card: #2c2c2c;
   --color-bg-title: #ebedf6;
   --color-bg-shape: #ffffff80;
+
+  --color-bg-finish: #212a42;
 }
 
 .light {
-  --color-bg-primary: #ffffff;
+  --color-bg-primary: #f6f7f8;
   --color-bg-secondary: #edf2f7;
   --color-text-primary: #2d3748;
   --color-text-secondary: #4a5568;
@@ -58,4 +60,5 @@
   --color-bg-card: #ffff;
   --color-bg-title: #5b2973;
   --color-bg-shape: #9e009180;
+  --color-bg-finish: #ebedf6;
 }

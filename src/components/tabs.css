@@ -1,0 +1,56 @@
+.card-border {
+  padding: 32px;
+  background: radial-gradient(
+    160.51% 123.88% at -5.25% 0%,
+    #d410cc 0%,
+    #1d0e34 100%
+  );
+}
+
+.btn {
+  /* font-family: "Monument Extended"; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 13px;
+  padding: 14px 30px;
+
+  background: radial-gradient(
+    160.51% 123.88% at -5.25% 0%,
+    #d410cc 0%,
+    #1d0e34 100%
+  );
+}
+
+.btn-cu {
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 14px 30px;
+  background-color: "transparent";
+  border: 1px solid;
+  border-radius: 13px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.custom-color {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  background: radial-gradient(
+      160.51% 123.88% at -5.25% 0%,
+      #9e0091 0%,
+      #1d0e34 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}

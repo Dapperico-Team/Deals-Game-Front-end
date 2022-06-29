@@ -12,22 +12,23 @@ import Won from "./components/won/Won";
 import Footer from "./components/Footer";
 import GetNow from "./components/GetNow";
 import Winners from "./components/Winners";
+import History from "./components/History";
 
 function App() {
   return (
     <ThemeProvider>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <AboutUs />
       <CountDown />
       <GetNow />
       <Winners />
       <Won />
+      <History />
       <HowTo />
       <Calculate />
       <Process />
       <NoBody />
-
       <Footer />
     </ThemeProvider>
   );

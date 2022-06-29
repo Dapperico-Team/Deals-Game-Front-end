@@ -20,10 +20,10 @@ const pol = ({ theme }) => {
           y2="612.49"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color={theme === "light" ? " #FFE68D" : "#D410CC"} />
+          <stop stopColor={theme === "light" ? " #FFE68D" : "#D410CC"} />
           <stop
             offset="1"
-            stop-color={theme === "light" ? "#D9A913" : "#1D0E34"}
+            stopColor={theme === "light" ? "#D9A913" : "#1D0E34"}
           />
         </linearGradient>
       </defs>

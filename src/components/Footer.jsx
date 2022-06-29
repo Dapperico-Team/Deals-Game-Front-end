@@ -8,13 +8,13 @@ import { ThemeContext } from "../context/ThemeContext";
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <footer className=" max-w-[1440px] mx-auto  flex flex-col  bottom-0 w-full h-[372px] bg-footer  ">
-      <div className="flex items-start justify-around mt-[125px] h-3/4 ">
+    <footer className=" max-w-[1440px] mx-auto  flex flex-col  bottom-0 w-full  xl:h-[372px] bg-footer  ">
+      <div className="flex flex-col md:flex-row  space-y-10 md:space-y-0   mx-auto   items-start justify-around mt-[125px] h-3/4 ">
         <div>
           <Logo theme={theme} />
         </div>
         <div>
-          <div className="flex flex-col ml-64 ">
+          <div className="flex flex-col ml-0 md:ml-24 lg:ml-64 ">
             <h4 className="font-serif text-[18px] leading-[22px] text-primary mb-[22px] ">
               Links
             </h4>
@@ -34,7 +34,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-10 md:ml-20">
           <h4 className="font-serif text-[18px] leading-[22px] text-primary mb-[22px]">
             Get in Touch
           </h4>
@@ -52,12 +52,10 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div>
-        <div className="flex items-center justify-center border-t-[1px] border-primary opacity-[.5] ">
-          <p className="mt-[22px] mb-[33px] opacity-[.5] text-primary ">
-            © 2022 Deals Game. All rights reserved.
-          </p>
-        </div>
+      <div className="flex items-center justify-center border-t-[1px] border-primary opacity-[.5] py-10  md:pt-[22px] md:pb-[33px]">
+        <p className=" opacity-[.5] text-primary ">
+          © 2022 Deals Game. All rights reserved.
+        </p>
       </div>
     </footer>
   );

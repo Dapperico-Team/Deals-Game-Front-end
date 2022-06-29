@@ -1,7 +1,7 @@
 const Down = ({ theme, open }) => {
   return (
     <svg
-      class={
+      className={
         open
           ? "rotate-180 transform w-[22.6px] h-[12.4px] ml-[15.2px]"
           : "w-[22.6px] h-[12.4px] ml-[15.2px]"

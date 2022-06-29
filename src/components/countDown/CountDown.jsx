@@ -11,7 +11,7 @@ const CountDown = () => {
     } else {
       // Render a countdown
       return (
-        <div className="flex items-center space-x-[24.88px]  mt-16 ">
+        <div className="flex items-center flex-col md:flex-row md:space-x-[24.88px]  mt-16 ">
           <div className="flex flex-col items-center ">
             <div className="font-sans font-medium text-[#2c2c2c99] dark:text-[#ffffff99] text-[30px] -mb-7 ">
               Day
@@ -71,7 +71,7 @@ const CountDown = () => {
   };
   return (
     <section className="container mx-auto ">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col-reverse items-center justify-center md:flex-col">
         <Countdown date={"2022-06-30T01:02:03"} renderer={renderer} />
         <p className="font-mono text-[50px] mt-[23.49px]"> until the draw</p>
       </div>

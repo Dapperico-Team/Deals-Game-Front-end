@@ -11,20 +11,20 @@ const GetNow = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <section className="container mx-auto ">
-      <h2 className="mt-[145px] text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
+      <h2 className="md:mt-[145px] mt-28 text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
         Get your tickets now!
       </h2>
 
-      <div className="relative flex items-center cut justify-center mt-[181px]">
-        <div className="z-50 flex-col first-line:flex xl:w-1/2">
+      <div className="relative mx-auto flex items-center cut justify-center mt-[181px]">
+        <div className="z-50 flex-col w-4/5 xl:w-1/2 first-line:flex">
           <div
-            class={
+            className={
               theme === "dark"
                 ? "card-dark rounded-[51px] z-50"
                 : "card rounded-[51px]  z-50"
             }
           >
-            <div class=" rounded-t-[50px] bg-title  ">
+            <div className=" rounded-t-[50px] bg-title  ">
               <div className="  flex items-center justify-between pt-[23px] pb-[25px] w-full h-full   text-center  item-center focus:outline-none ">
                 <p className="text-[22px] ml-[36px] text-card">Next Draw</p>
                 <p className=" mr-[43px]  text-[22px] text-card">
@@ -32,24 +32,24 @@ const GetNow = () => {
                 </p>
               </div>
             </div>
-            <div class="  text-card text-center leading-[48px] font-serif text-[40px] mt-[40px]">
+            <div className="  text-card text-center leading-[48px] font-serif text-[40px] mt-[40px]">
               Prize Pot
             </div>
-            <h2 class=" text-card  mt-3 font-serif text-[80px] leading-[96px] text-center">
+            <h2 className=" text-card  mt-3 font-serif text-[40px]  md:text-[80px] leading-[96px] text-center">
               ~$34,621
             </h2>
-            <h3 class=" text-card text-[28px] mb-[20px]  text-center">
+            <h3 className=" text-card text-[28px] mb-[20px]  text-center">
               23,765 &nbsp; DEALS
             </h3>
 
-            <div class=" border-2 border-[#9B9B9B]   border-dashed "></div>
+            <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
 
-            <div class=" mb-3 rounded-b-xl ">
-              <div class="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+            <div className="mb-3 rounded-b-xl">
+              <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
                 <Buy />
               </div>
             </div>
-            <div class=" z-50  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
+            <div className=" z-50  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
               <Disclosure>
                 {({ open }) => (
                   <>
@@ -146,9 +146,9 @@ const GetNow = () => {
           </div>
           {/* <div className="absolute  top-[304px] bg-primary rounded-full  -left-[40px] z-[9999999] w-[86px] h-[93.96px]"></div> */}
 
-          <div className="bg-shape rounded-b-[51px] absolute -bottom-[35px] left-[398px]   z-[-1]  w-[647.9px] h-[180.17px]   p-1"></div>
+          <div className="bg-shape hidden xl:block  rounded-b-[51px] absolute -bottom-[35px] left-[398px]   z-[-1]  w-[647.9px] h-[180.17px]   p-1"></div>
         </div>
-        <div className="absolute -top-[89px]  left-[646px] ">
+        <div className=" hidden xl:block   absolute -top-[89px]  left-[646px] ">
           {/* <div className="absolute  top-[304px] bg-primary z-[1]  mix-blend-normal  right-[0px]  w-[43px] h-[93.96px] rounded-bl-full rounded-tl-full "></div> */}
           <Poly theme={theme} />
         </div>

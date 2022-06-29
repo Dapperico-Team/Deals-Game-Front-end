@@ -14,7 +14,30 @@ const Winners = () => {
 
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1020,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <section className="container mx-auto ">
@@ -28,7 +51,7 @@ const Winners = () => {
       </div>
       <div className="mt-[100px]   ">
         <Slider {...settings}>
-          <div className="flex  bg-white rounded-[31.2992px]  card-slide ">
+          <div className="flex  bg-white rounded-[31.2992px] card-slide ">
             <div className="flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] pl-[37.7px] pr-[30px]whitespace-nowrap">
               <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                 round
@@ -40,7 +63,7 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div class=" border-2 border-[#9B9B9B]   border-dashed "></div>
+            <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
@@ -70,7 +93,7 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div class=" border-2 border-[#9B9B9B]   border-dashed "></div>
+            <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
@@ -100,7 +123,7 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div class=" border-2 border-[#9B9B9B]   border-dashed "></div>
+            <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
@@ -130,7 +153,7 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div class=" border-2 border-[#9B9B9B]   border-dashed "></div>
+            <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:

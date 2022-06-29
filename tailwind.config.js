@@ -17,6 +17,7 @@ module.exports = {
       },
       borderColor: {
         primary: "var(--color-bg-primary)",
+        secondary: "var(--color-text-primary)",
       },
 
       backgroundColor: {
@@ -26,6 +27,7 @@ module.exports = {
         footer: "var(--color-bg-footer)",
         title: "var(--color-bg-title)",
         shape: "var(--color-bg-shape)",
+        finish: "var(--color-bg-finish)",
       },
       textColor: {
         accent: "var(--color-text-accent)",

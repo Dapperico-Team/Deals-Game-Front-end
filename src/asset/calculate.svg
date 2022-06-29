@@ -153,8 +153,8 @@
 <stop offset="0.5646" stop-color="#95104C"/>
 <stop offset="0.7043" stop-color="#8A0C47"/>
 </radialGradient>
-<clipPath id="clip0_180_11554">
+<clip-path id="clip0_180_11554">
 <rect width="266" height="312" fill="white" transform="translate(0 0.545288)"/>
-</clipPath>
+</clip-path>
 </defs>
 </svg>

@@ -2,9 +2,9 @@ import React from "react";
 import poly from "../asset/noBodyPolygon.svg";
 import Image from "../asset/nobody.png";
 
-const AboutUs = () => {
+const NoBody = () => {
   return (
-    <section className="container">
+    <section className="container mx-auto mb-52 ">
       <div className="relative">
         <img
           src={poly}
@@ -35,4 +35,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default NoBody;
