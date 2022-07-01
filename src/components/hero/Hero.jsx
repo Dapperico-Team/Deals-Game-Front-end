@@ -24,7 +24,8 @@ const Hero = () => {
 
         {/* Image */}
         {/* <div className="absolute lg:w-[805.26px] lg:h-[610.43px] lg:left-[606px] lg:top-[61px]"> */}
-        <video autoplay loop muted controls>
+
+        <video autoplay loop muted playsinline>
           <source src={Furtune} type="video/webm" />
         </video>
         {/* </div> */}

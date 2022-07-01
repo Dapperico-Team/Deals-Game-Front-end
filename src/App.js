@@ -17,7 +17,7 @@ import History from "./components/History";
 function App() {
   return (
     <ThemeProvider>
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
       <AboutUs />
       <CountDown />

@@ -4,12 +4,12 @@ import Right from "../asset/ArrowRight.svg";
 import Left from "../asset/ArrowLeft.svg";
 import Buy from "./button/Buy";
 import Down from "../asset/ArrowDown";
-// import one from "../asset/1.svg";
-// import two from "../asset/2.svg";
-// import three from "../asset/3.svg";
-// import four from "../asset/4.svg";
-// import five from "../asset/5.svg";
-// import six from "../asset/6.svg";
+import one from "../asset/1.png";
+import two from "../asset/2.png";
+import three from "../asset/3.png";
+import four from "../asset/4.png";
+import five from "../asset/5.png";
+import six from "../asset/6.png";
 import "./tabs.css";
 import { Disclosure, Transition } from "@headlessui/react";
 const Tabs = ({ color }) => {
@@ -43,8 +43,8 @@ const Tabs = ({ color }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-    // prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+    prevArrow: <SamplePrevArrow />,
   };
   return (
     <>
@@ -103,7 +103,7 @@ const Tabs = ({ color }) => {
             <Slider {...settings}>
               <div className="flex items-center justify-center mx-auto ">
                 <div className="z-50 flex-col ">
-                  <div className="card-border rounded-[51px] max-w-[834px] mx-[300px]  sm:mx-auto  ">
+                  <div className="card-border rounded-[51px] max-w-[834px]   sm:mx-auto  ">
                     <div className="bg-white rounded-[51px] z-50">
                       <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
                         <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
@@ -114,7 +114,7 @@ const Tabs = ({ color }) => {
                         </h3>
 
                         <div>
-                          <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
+                          <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                             Drawn May 10, 2022, 04:00 Pm
                           </h4>
                         </div>
@@ -122,13 +122,44 @@ const Tabs = ({ color }) => {
                           Wining Numbers
                         </h3>
                       </div>
-                      <div className="flex items-center justify-center gap-0 max-w-690">
-                        {/* <img src={one} alt="" />
-                          <img src={two} alt="" />
-                          <img src={three} alt="" />
-                          <img src={four} alt="" />
-                          <img src={five} alt="" />
-                          <img src={six} alt="" /> */}
+                      <div className="flex flex-col items-center justify-center mx-auto text-center sm:gap-4 md:flex-row max-w-690">
+                        <div className="relative flex items-center justify-center ">
+                          <img src={one} alt="" className="relative" />
+                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                            1
+                          </div>
+                        </div>
+                        <div className="relative flex items-center justify-center ">
+                          <img src={two} alt="" className="relative" />
+                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                            1
+                          </div>
+                        </div>
+
+                        <div className="relative ">
+                          <img src={three} alt="" className="relative" />
+                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                            1
+                          </div>
+                        </div>
+                        <div className="relative ">
+                          <img src={four} alt="" className="relative" />
+                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                            1
+                          </div>
+                        </div>
+                        <div className="relative ">
+                          <img src={five} alt="" className="relative" />
+                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                            1
+                          </div>
+                        </div>
+                        <div className="relative ">
+                          <img src={six} alt="" className="relative" />
+                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                            1
+                          </div>
+                        </div>
                       </div>
 
                       <div className="mb-3 rounded-b-xl">
@@ -150,7 +181,7 @@ const Tabs = ({ color }) => {
                                 leaveTo="transform scale-95 opacity-0"
                               >
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 bg-transparent ">
-                                  <div className="flex items-center justify-around">
+                                  <div className="flex flex-col items-center justify-around p-6 space-y-6 md:flex-row ">
                                     <div className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
                                       Prize Pot
                                     </div>

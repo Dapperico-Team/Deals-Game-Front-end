@@ -4,7 +4,7 @@ import Image from "../asset/nobody.png";
 
 const NoBody = () => {
   return (
-    <section className="container mx-auto mb-52 ">
+    <section className="container mx-auto xl:mb-52 ">
       <div className="relative">
         <img
           src={poly}
@@ -18,11 +18,11 @@ const NoBody = () => {
         />
       </div>
       <div className="flex flex-col items-start p-6 xl:ml-[145px] ">
-        <h2 className="xl:mt-[145px] text-left text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
+        <h2 className=" mt-[20px]  xl:mt-[145px] text-center xl:text-left text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
           What happens if nobody wins?
         </h2>
 
-        <p className=" mt-[72px] text-left  xl:w-1/2  font-sans font-normal lg:text-[24px] lg:leading-[28.44px] text-primary   ">
+        <p className=" mt-[72px] text-center xl:text-left xl:w-1/2  font-sans font-normal lg:text-[24px] lg:leading-[28.44px] text-primary   ">
           If we do not have any winners in any of the matches, 50% of the money
           that is not won in the matches, is divided between the winners from
           all the other Matches of the same campaign, and the remaining goes to

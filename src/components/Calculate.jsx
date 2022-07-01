@@ -6,7 +6,7 @@ import Cont from "../asset/result.svg";
 const Calculate = () => {
   return (
     <section className="container mx-auto ">
-      <h2 className="mt-[145px]text-left p-6  xl:text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
+      <h2 className="mt-[145px] text-center p-6  xl:text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
         How the Winning is calculated:
       </h2>
       <div className="flex flex-col items-center xl:flex-row ">
@@ -26,7 +26,7 @@ const Calculate = () => {
           </div>
         </div>
         <div className="xl:w-1/3 ">
-          <p className="   text-left  font-sans font-normal lg:text-[24px] lg:leading-[33px] text-primary   ">
+          <p className="   text-center xl:text-left  font-sans font-normal lg:text-[24px] lg:leading-[33px] text-primary   ">
             Check your ticket. <br />
             The best match on your ticket will make you a lucky winner!
             <br />
