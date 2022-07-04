@@ -4,9 +4,11 @@ import Insta from "../asset/instaLight.js";
 import Teleg from "../asset/telegLight.js";
 import Message from "../asset/MessageLight";
 import { ThemeContext } from "../context/ThemeContext";
+import { fromJSON } from "postcss";
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
+
   return (
     <footer className=" max-w-[1440px] mx-auto  flex flex-col  bottom-0 w-full  xl:h-[372px] bg-footer  ">
       <div className="flex flex-col md:flex-row  space-y-10 md:space-y-0   mx-auto   items-start justify-around mt-[125px] h-3/4 ">

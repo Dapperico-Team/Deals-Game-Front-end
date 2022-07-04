@@ -14,8 +14,8 @@ const HowTo = () => {
           The lottery mechanism is based on a smart contract.
         </p>
         <div className="mt-[135.42px] ">
-          <div className="grid grid-cols-1 gap-10 mx-auto lg:grid-cols-2 xl:grid-cols-3">
-            <div className="flow-root mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
+          <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 xl:grid-cols-3">
+            <div className=" mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
               <div className="-mt-14">
                 <div>
                   <span
@@ -45,7 +45,7 @@ const HowTo = () => {
                 </p>
               </div>
             </div>
-            <div className="flow-root mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
+            <div className=" mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
               <div className="-mt-14">
                 <div>
                   <span
@@ -73,7 +73,7 @@ const HowTo = () => {
                 </p>
               </div>
             </div>
-            <div className="flow-root  mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
+            <div className="  mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
               <div className="-mt-14">
                 <div>
                   <span

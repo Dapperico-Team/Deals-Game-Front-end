@@ -43,8 +43,8 @@ const Tabs = ({ color }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-    prevArrow: <SamplePrevArrow />,
+    // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+    // prevArrow: <SamplePrevArrow />,
   };
   return (
     <>

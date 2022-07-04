@@ -18,7 +18,7 @@
   --b: 1px; /* border width*/
 
   color: #313149;
-  display: block;
+  display: flex;
   /* justify-content: center;
   align-items: center;
   flex-direction: column;  */
