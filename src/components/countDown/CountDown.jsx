@@ -2,12 +2,35 @@ import React from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import Circle from "../Circle";
 import "./count.css";
+import { useContractRead } from "wagmi";
+import { contractABI, contractAddress } from "../../contract";
 
 const CountDown = () => {
+  const {
+    data: ID,
+    isError: IDerror,
+    isLoading: IDloading,
+  } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "_ID",
+  });
+  const { data, isError, isLoading, error } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "Lotteries",
+    args: ID?.toString() - 1,
+  });
+
+  const rawstatus = data?.toString()?.split(",");
+  const status = rawstatus && rawstatus[4];
+  const timestamp = rawstatus && rawstatus[3];
+  const valid = (status == 0 || status == 1) && parseInt(timestamp + "000");
+
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
-      return "finish";
+      return null;
     } else {
       // Render a countdown
       return (
@@ -69,14 +92,18 @@ const CountDown = () => {
       );
     }
   };
-  return (
-    <section className="container mx-auto ">
-      <div className="flex flex-col-reverse items-center justify-center md:flex-col">
-        <Countdown date={"2022-06-30T01:02:03"} renderer={renderer} />
-        <p className="font-mono text-[50px] mt-[23.49px]"> until the draw</p>
-      </div>
-    </section>
-  );
+  if (status == 0 || status == 1) {
+    return (
+      <section className="container mx-auto ">
+        <div className="flex flex-col-reverse items-center justify-center md:flex-col">
+          <Countdown date={valid} renderer={renderer} />
+          <p className="font-mono text-[50px] mt-[23.49px]"> until the draw</p>
+        </div>
+      </section>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
 export default CountDown;

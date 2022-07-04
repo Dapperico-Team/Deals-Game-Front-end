@@ -1,7 +1,7 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import "./button.css";
-const Button = () => {
+const Button = ({ style }) => {
   return (
     <ConnectButton.Custom>
       {({
@@ -27,6 +27,7 @@ const Button = () => {
               if (!mounted || !account || !chain) {
                 return (
                   <button
+                    style={style}
                     className="button"
                     onClick={openConnectModal}
                     type="button"
@@ -38,7 +39,7 @@ const Button = () => {
 
               if (chain.unsupported) {
                 return (
-                  <button onClick={openChainModal} type="button">
+                  <button style={style} onClick={openChainModal} type="button">
                     Wrong network
                   </button>
                 );
@@ -75,14 +76,15 @@ const Button = () => {
                   </button> */}
 
                   <button
+                    style={style}
                     className="button"
                     onClick={openAccountModal}
                     type="button"
                   >
                     {account.displayName}
-                    {account.displayBalance
+                    {/* {account.displayBalance
                       ? ` (${account.displayBalance})`
-                      : ""}
+                      : ""} */}
                   </button>
                 </div>
               );

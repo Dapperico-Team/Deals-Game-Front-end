@@ -1,14 +1,66 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Poly from "../asset/getnow.js";
-
+import { ethers } from "ethers";
 import dashed from "../asset/dashLine.svg";
 import Buy from "./button/Buy";
 import Down from "../asset/ArrowDown";
 import { Disclosure } from "@headlessui/react";
 import { ThemeContext } from "../context/ThemeContext";
 import "./getnow.css";
+import { useContractRead } from "wagmi";
+import { contractABI, contractAddress } from "../contract";
 const GetNow = () => {
   const { theme } = useContext(ThemeContext);
+
+  const getCurrent = async () => {
+    const res = await fetch("http://165.227.44.103:2000/api/currentLottary");
+    const data = await res.json();
+    return data;
+  };
+  const [current, setCurrent] = useState(null);
+  useEffect(() => {
+    getCurrent()
+      .then((data) => {
+        setCurrent(data); // set current lottary
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const {
+    data: ID,
+    isError: IDerror,
+    isLoading: IDloading,
+  } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "_ID",
+  });
+  const { data, isError, isLoading, error } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "Lotteries",
+    args: ID?.toString() - 1,
+  });
+  const {
+    data: deals,
+    isError: dealerror,
+    isLoading: dealload,
+  } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "Get_SoldOut_Tickets",
+    args: ID?.toString() - 1,
+  });
+
+  const rawstatus = data?.toString()?.split(",");
+  const status = rawstatus && rawstatus[4];
+  const timestamp = rawstatus && rawstatus[3];
+
+  const date = new Date(timestamp * 1000);
+
+  // console.log(rawstatus[5]);
+
   return (
     <section className="container mx-auto ">
       <h2 className="md:mt-[145px] mt-28 text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
@@ -28,7 +80,8 @@ const GetNow = () => {
               <div className="  flex items-center justify-between pt-[23px] pb-[25px] w-full h-full   text-center  item-center focus:outline-none ">
                 <p className="text-[22px] ml-[36px] text-card">Next Draw</p>
                 <p className=" mr-[43px]  text-[22px] text-card">
-                  May 22, 2022, 03:30 PM
+                  {/* May 22, 2022, 03:30 PM */}
+                  {date?.toString().substring(0, 21)}
                 </p>
               </div>
             </div>
@@ -36,10 +89,12 @@ const GetNow = () => {
               Prize Pot
             </div>
             <h2 className=" text-card  mt-3 font-serif text-[40px]  md:text-[80px] leading-[96px] text-center">
-              ~$34,621
+              {current && rawstatus && rawstatus[5] == 0
+                ? "~BNB " + ethers.utils.formatEther(current?.totalCollected)
+                : "~$ " + current?.totalCollected}
             </h2>
             <h3 className=" text-card text-[28px] mb-[20px]  text-center">
-              23,765 &nbsp; DEALS
+              {deals?.toString()?.split(",")?.length} &nbsp; DEALS
             </h3>
 
             <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
@@ -55,83 +110,18 @@ const GetNow = () => {
                   <>
                     <Disclosure.Panel className="px-8 pt-4 pb-2 text-sm text-gray-500 bg-transparent">
                       <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
-                        <div>
-                          <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                            Match First 1
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
-                        <div>
-                          <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                            Match First 1
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
-                        <div>
-                          <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                            Match First 1
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
-                        <div>
-                          <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                            Match First 1
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
-                        <div>
-                          <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                            Match First 1
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
-                        <div>
-                          <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                            Match First 1
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
-                        <div>
-                          <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
-                            Burn
-                          </h5>
-                          <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                            23,765 DEALS
-                          </p>
-                          <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                            ~$1,430
-                          </p>
-                        </div>
+                        {current?.eachGroupWins?.map((item, index) => (
+                          <div>
+                            <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                              Match First {index + 1}
+                            </h5>
+                            <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                              {rawstatus && rawstatus[5] == 0
+                                ? "~BNB " + ethers.utils.formatEther(item)
+                                : "~$ " + item}
+                            </p>
+                          </div>
+                        ))}
                       </div>
                     </Disclosure.Panel>
                     <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-gray-200  ">
