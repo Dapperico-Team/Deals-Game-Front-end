@@ -22,7 +22,7 @@ import History from "./components/History";
 function App() {
   const { chains, provider } = configureChains(
     [chain.rinkeby],
-    [infuraProvider({ infuraId: process.env.INFURA_ID }), publicProvider()]
+    [infuraProvider({ infuraId: process.env.INFURA_ID })]
   );
 
   const { connectors } = getDefaultWallets({

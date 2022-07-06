@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Right from "../asset/ArrowRight.svg";
 import Left from "../asset/ArrowLeft.svg";
@@ -11,9 +11,38 @@ import four from "../asset/4.png";
 import five from "../asset/5.png";
 import six from "../asset/6.png";
 import "./tabs.css";
+import { ethers } from "ethers";
 import { Disclosure, Transition } from "@headlessui/react";
+import { useContractRead } from "wagmi";
+import { contractABI, contractAddress } from "../contract";
 const Tabs = ({ color }) => {
   const [openTab, setOpenTab] = React.useState(1);
+
+  // const { data, isError, isLoading, error } = useContractRead({
+  //   addressOrName: contractAddress,
+  //   contractInterface: contractABI,
+  //   functionName: "Lotteries",
+  //   args: ID?.toString() - 1,
+  // });
+
+  const getAllLottaries = async () => {
+    const res = await fetch("http://165.227.44.103:2000/api/allLottaries");
+    const data = await res.json();
+    return data;
+  };
+  const [allLottaries, setAllLottaries] = useState([]);
+
+  useEffect(() => {
+    getAllLottaries()
+      .then((data) => {
+        setAllLottaries(data?.lottariesData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log({ allLottaries });
 
   function SampleNextArrow(props) {
     const { className, onClick } = props;
@@ -43,8 +72,8 @@ const Tabs = ({ color }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-    // prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+    prevArrow: <SamplePrevArrow />,
   };
   return (
     <>
@@ -98,242 +127,265 @@ const Tabs = ({ color }) => {
             openTab === 1 ? "flex items-center justify-center" : "hidden"
           }
           id="link1"
-        >
+        ></div>
+        <div className={openTab === 2 ? "block" : "hidden"} id="link2">
           <div className="mt-[32px] max-w-[1036.69px]  ">
             <Slider {...settings}>
-              <div className="flex items-center justify-center mx-auto ">
-                <div className="z-50 flex-col ">
-                  <div className="card-border rounded-[51px] max-w-[834px]   sm:mx-auto  ">
-                    <div className="bg-white rounded-[51px] z-50">
-                      <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
-                        <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
-                          Round{" "}
-                          <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
-                            436
-                          </span>
-                        </h3>
+              {allLottaries.map((lottary) => (
+                <div className="flex items-center justify-center mx-auto ">
+                  <div className="z-50 flex-col ">
+                    <div className="card-border rounded-[51px] max-w-[834px]   sm:mx-auto  ">
+                      <div className="bg-white rounded-[51px] z-50">
+                        <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
+                          <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
+                            Round{" "}
+                            <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
+                              {lottary?.lottaryId}
+                            </span>
+                          </h3>
 
-                        <div>
-                          <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
-                            Drawn May 10, 2022, 04:00 Pm
-                          </h4>
-                        </div>
-                        <h3 className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
-                          Wining Numbers
-                        </h3>
-                      </div>
-                      <div className="flex flex-col items-center justify-center mx-auto text-center sm:gap-4 md:flex-row max-w-690">
-                        <div className="relative flex items-center justify-center ">
-                          <img src={one} alt="" className="relative" />
-                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
-                            1
+                          <div>
+                            <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
+                              Drawn May 10, 2022, 04:00 Pm
+                            </h4>
                           </div>
+                          <h3 className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
+                            Wining Numbers
+                          </h3>
                         </div>
-                        <div className="relative flex items-center justify-center ">
-                          <img src={two} alt="" className="relative" />
-                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
-                            1
+                        <div className="flex flex-col items-center justify-center mx-auto text-center sm:gap-4 md:flex-row max-w-690">
+                          <div className="relative flex items-center justify-center ">
+                            <img src={one} alt="" className="relative" />
+                            <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                              {/* {wincode && wincode?.substring(0, 1)} */}
+                              {lottary && lottary?.winCode?.substring(0, 1)}
+                            </div>
+                          </div>
+                          <div className="relative flex items-center justify-center ">
+                            <img src={two} alt="" className="relative" />
+                            <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                              {lottary && lottary?.winCode?.substring(1, 2)}
+                            </div>
+                          </div>
+
+                          <div className="relative ">
+                            <img src={three} alt="" className="relative" />
+                            <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                              {lottary && lottary?.winCode?.substring(2, 3)}
+                            </div>
+                          </div>
+                          <div className="relative ">
+                            <img src={four} alt="" className="relative" />
+                            <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                              {lottary && lottary?.winCode?.substring(3, 4)}
+                            </div>
+                          </div>
+                          <div className="relative ">
+                            <img src={five} alt="" className="relative" />
+                            <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                              {lottary && lottary?.winCode?.substring(4, 5)}
+                            </div>
+                          </div>
+                          <div className="relative ">
+                            <img src={six} alt="" className="relative" />
+                            <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
+                              {lottary && lottary?.winCode?.substring(5, 6)}
+                            </div>
                           </div>
                         </div>
 
-                        <div className="relative ">
-                          <img src={three} alt="" className="relative" />
-                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
-                            1
+                        {/* <div className="mb-3 rounded-b-xl">
+                          <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+                            <Buy />
                           </div>
-                        </div>
-                        <div className="relative ">
-                          <img src={four} alt="" className="relative" />
-                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
-                            1
-                          </div>
-                        </div>
-                        <div className="relative ">
-                          <img src={five} alt="" className="relative" />
-                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
-                            1
-                          </div>
-                        </div>
-                        <div className="relative ">
-                          <img src={six} alt="" className="relative" />
-                          <div className="absolute top-6 left-9 font-serif text-[#2C2C2C] text-[30px]">
-                            1
-                          </div>
-                        </div>
-                      </div>
+                        </div> */}
+                        <div className=" z-50  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
+                          <Disclosure>
+                            {({ open }) => (
+                              <>
+                                <div className=" w-full border-t-2  border-[#e8e8e833] border-solid   "></div>
+                                <Transition
+                                  enter="transition duration-500 ease-out"
+                                  enterFrom="transform scale-95 opacity-0"
+                                  enterTo="transform scale-100 opacity-100"
+                                  leave="transition duration-500 ease-out"
+                                  leaveFrom="transform scale-100 opacity-100"
+                                  leaveTo="transform scale-95 opacity-0"
+                                >
+                                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 bg-transparent ">
+                                    <div className="flex flex-col items-center justify-around p-6 space-y-6 md:flex-row ">
+                                      <div className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
+                                        Prize Pot
+                                      </div>
+                                      <div>
+                                        <p className="mt-[8px] custom-color  text-[32px]">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue}
+                                        </p>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          23,765 DEALS
+                                        </h5>
+                                      </div>
+                                      <div className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                        Total players this round:{" "}
+                                        <span className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          234
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
+                                      <div>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          Match First 1
+                                        </h5>
+                                        {/* <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p> */}
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue *
+                                                  0.02
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue *
+                                                0.02}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          Match First 2
+                                        </h5>
+                                        {/* <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p> */}
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue *
+                                                  0.03
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue *
+                                                0.03}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          Match First 3
+                                        </h5>
+                                        {/* <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p> */}
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue *
+                                                  0.05
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue *
+                                                0.05}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          Match First 4
+                                        </h5>
+                                        {/* <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p> */}
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue *
+                                                  0.1
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue *
+                                                0.1}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          Match First 5
+                                        </h5>
+                                        {/* <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p> */}
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue *
+                                                  0.2
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue *
+                                                0.2}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          Match First 6
+                                        </h5>
+                                        {/* <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p> */}
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          {lottary?.paymentMethod == 0
+                                            ? "~BNB " +
+                                              ethers.utils.formatEther(
+                                                lottary?.totalCollectedValue *
+                                                  0.4
+                                              )
+                                            : "~$ " +
+                                              lottary?.totalCollectedValue *
+                                                0.4}
+                                        </p>
+                                      </div>
+                                      {/* <div>
+                                        <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
+                                          Burn
+                                        </h5>
+                                        <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                          23,765 DEALS
+                                        </p>
+                                        <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
+                                          ~$1,430
+                                        </p>
+                                      </div> */}
+                                    </div>
+                                  </Disclosure.Panel>
+                                </Transition>
+                                <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-gray-200  ">
+                                  <span className="text-[22px] text-card">
+                                    Details
+                                  </span>
 
-                      <div className="mb-3 rounded-b-xl">
-                        <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
-                          <Buy />
+                                  <Down open={open} />
+                                </Disclosure.Button>
+                              </>
+                            )}
+                          </Disclosure>
                         </div>
-                      </div>
-                      <div className=" z-50  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
-                        <Disclosure>
-                          {({ open }) => (
-                            <>
-                              <div className=" w-full border-t-2  border-[#e8e8e833] border-solid   "></div>
-                              <Transition
-                                enter="transition duration-500 ease-out"
-                                enterFrom="transform scale-95 opacity-0"
-                                enterTo="transform scale-100 opacity-100"
-                                leave="transition duration-500 ease-out"
-                                leaveFrom="transform scale-100 opacity-100"
-                                leaveTo="transform scale-95 opacity-0"
-                              >
-                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 bg-transparent ">
-                                  <div className="flex flex-col items-center justify-around p-6 space-y-6 md:flex-row ">
-                                    <div className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
-                                      Prize Pot
-                                    </div>
-                                    <div>
-                                      <p className="mt-[8px] custom-color  text-[32px]">
-                                        ~$1,430
-                                      </p>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        23,765 DEALS
-                                      </h5>
-                                    </div>
-                                    <div className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                      Total players this round:{" "}
-                                      <span className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        234
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
-                                    <div>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        Match First 1
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        Match First 1
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        Match First 1
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        Match First 1
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        Match First 1
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                        Match First 1
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
-                                        Burn
-                                      </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
-                                      </p>
-                                    </div>
-                                  </div>
-                                </Disclosure.Panel>
-                              </Transition>
-                              <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-gray-200  ">
-                                <span className="text-[22px] text-card">
-                                  Details
-                                </span>
-
-                                <Down open={open} />
-                              </Disclosure.Button>
-                            </>
-                          )}
-                        </Disclosure>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="flex  bg-white rounded-[31.2992px]   ">
-                <div className="flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] pl-[37.7px] pr-[30px]whitespace-nowrap">
-                  <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
-                    round
-                  </h3>
-                  <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
-                    436
-                  </span>
-                  <h3 className="font-serif text-[18px] font-extrabold leading-[29px] text-[#2C2C2C]">
-                    match first 1
-                  </h3>
-                </div>
-                <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
-                <div className=" px-[37.7px] pt-[50px] pb-[33px]">
-                  <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
-                    wallet ID:
-                  </h4>
-                  <p className="font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
-                    hurfyyf6ef6y8ucgbdh
-                  </p>
-                </div>
-                <div className="px-[37.7px] pb-[28.78px]">
-                  <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
-                    winning prize:{" "}
-                  </h4>
-                  <p className="fonet-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
-                    $65,654
-                  </p>
-                </div>
-              </div>
+              ))}
             </Slider>
           </div>
         </div>
-        <div className={openTab === 2 ? "block" : "hidden"} id="link2"></div>
-        {/* </div>
-            </div>
-          </div> */}
       </div>
     </>
   );
