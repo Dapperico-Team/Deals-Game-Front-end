@@ -17,6 +17,7 @@ import { useContractRead } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 const Tabs = ({ color }) => {
   const [openTab, setOpenTab] = React.useState(1);
+  const [allLottaries, setAllLottaries] = useState([]);
 
   // const { data, isError, isLoading, error } = useContractRead({
   //   addressOrName: contractAddress,
@@ -30,7 +31,6 @@ const Tabs = ({ color }) => {
     const data = await res.json();
     return data;
   };
-  const [allLottaries, setAllLottaries] = useState([]);
 
   useEffect(() => {
     getAllLottaries()
@@ -75,6 +75,7 @@ const Tabs = ({ color }) => {
     nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
     prevArrow: <SamplePrevArrow />,
   };
+
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-[34px]">
@@ -131,7 +132,7 @@ const Tabs = ({ color }) => {
         <div className={openTab === 2 ? "block" : "hidden"} id="link2">
           <div className="mt-[32px] max-w-[1036.69px]  ">
             <Slider {...settings}>
-              {allLottaries.map((lottary) => (
+              {allLottaries?.map((lottary) => (
                 <div className="flex items-center justify-center mx-auto ">
                   <div className="z-50 flex-col ">
                     <div className="card-border rounded-[51px] max-w-[834px]   sm:mx-auto  ">

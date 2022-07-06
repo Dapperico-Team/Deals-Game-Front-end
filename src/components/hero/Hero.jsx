@@ -3,6 +3,7 @@ import React from "react";
 import "./hero.css";
 import Buy from "../button/Buy";
 import Furtune from "../../asset/hero.webm";
+import Arrow from "../../asset/Arrow.svg";
 
 const Hero = () => {
   return (
@@ -21,14 +22,14 @@ const Hero = () => {
             <Buy />
           </div>
         </div>
-
-        {/* Image */}
-        {/* <div className="absolute lg:w-[805.26px] lg:h-[610.43px] lg:left-[606px] lg:top-[61px]"> */}
-
         <video autoPlay loop muted playsInline>
           <source src={Furtune} type="video/webm" />
         </video>
-        {/* </div> */}
+        <img
+          src={Arrow}
+          className="absolute animate-bounce   -bottom-[30px] left-[45%]  "
+          alt=""
+        />
       </div>
     </section>
   );
