@@ -40,7 +40,7 @@ const Winners = () => {
     ],
   };
   return (
-    <section className="container mx-auto ">
+    <section id="win" className="container mx-auto ">
       <h2 className="mt-[145px] text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
         The names of the winners
       </h2>
@@ -51,8 +51,8 @@ const Winners = () => {
       </div>
       <div className="mt-[100px]   ">
         <Slider {...settings}>
-          <div className="flex  bg-white rounded-[31.2992px] card-slide ">
-            <div className="flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] pl-[37.7px] pr-[30px]whitespace-nowrap">
+          <div className="flex  mx-auto bg-white rounded-[31.2992px] card-slide ">
+            <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
               <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                 round
               </h3>
@@ -68,7 +68,7 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className="font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -81,8 +81,8 @@ const Winners = () => {
               </p>
             </div>
           </div>
-          <div className="flex  bg-white rounded-[31.2992px] max-w-[447.7px] card-slide ">
-            <div className="flex items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] pl-[37.7px] pr-[30px]whitespace-nowrap">
+          <div className="flex  mx-auto bg-white rounded-[31.2992px] card-slide ">
+            <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
               <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                 round
               </h3>
@@ -98,7 +98,7 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className="font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -111,8 +111,8 @@ const Winners = () => {
               </p>
             </div>
           </div>
-          <div className="flex   bg-white rounded-[31.2992px] max-w-[447.7px] card-slide ">
-            <div className="flex items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] pl-[37.7px] pr-[30px]whitespace-nowrap">
+          <div className="flex  mx-auto bg-white rounded-[31.2992px] card-slide ">
+            <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
               <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                 round
               </h3>
@@ -128,7 +128,7 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className="font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -141,8 +141,8 @@ const Winners = () => {
               </p>
             </div>
           </div>
-          <div className="flex  bg-white rounded-[31.2992px] max-w-[447.7px] card-slide ">
-            <div className="flex items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] pl-[37.7px] pr-[30px]whitespace-nowrap">
+          <div className="flex  mx-auto bg-white rounded-[31.2992px] card-slide ">
+            <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
               <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                 round
               </h3>
@@ -158,7 +158,37 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className="font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+                hurfyyf6ef6y8ucgbdh
+              </p>
+            </div>
+            <div className="px-[37.7px] pb-[28.78px]">
+              <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
+                winning prize:{" "}
+              </h4>
+              <p className="fonet-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
+                $65,654
+              </p>
+            </div>
+          </div>
+          <div className="flex  mx-auto bg-white rounded-[31.2992px] card-slide ">
+            <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
+              <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
+                round
+              </h3>
+              <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
+                436
+              </span>
+              <h3 className="font-serif text-[18px] font-extrabold leading-[29px] text-[#2C2C2C]">
+                match first 1
+              </h3>
+            </div>
+            <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
+            <div className=" px-[37.7px] pt-[50px] pb-[33px]">
+              <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
+                wallet ID:
+              </h4>
+              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>

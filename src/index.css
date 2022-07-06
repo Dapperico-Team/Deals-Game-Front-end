@@ -1,6 +1,9 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"); */
 /* @import url(//db.onlinewebfonts.com/c/7b03fdb6d9bfa7c997bc732b5e8918e2?family=Forgotten+Futurist); */
 @tailwind base;
+html {
+  scroll-behavior: smooth;
+}
 @tailwind components;
 
 @font-face {
@@ -22,7 +25,7 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-primary text-primary  overflow-x-hidden;
+  @apply overflow-x-hidden bg-primary text-primary;
 }
 
 .dark {

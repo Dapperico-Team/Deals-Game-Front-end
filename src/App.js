@@ -47,7 +47,7 @@ function App() {
           <Winners />
           <Won />
           <History />
-          <HowTo />
+          {/* <HowTo /> */}
           <Calculate />
           <Process />
           <NoBody />

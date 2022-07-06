@@ -96,7 +96,7 @@ export default function Modal({ open, setOpen }) {
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-[9999999999999999999999] overflow-y-auto"
           onClose={setOpen}
         >
           <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -153,89 +153,11 @@ export default function Modal({ open, setOpen }) {
                     </Dialog.Title>
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-[55px] ml-4 ">
-                  <div className="flex">
-                    <p className="font-serif text-[#131111] text-[20px] leading-[24px]">
-                      Buy
-                    </p>
-                    <img
-                      src={Plus}
-                      alt="plus-icon"
-                      className="ml-[9px]"
-                      onClick={
-                        formValues.length < count ? () => addFormFields() : null
-                      }
-                    />
-                  </div>
 
-                  <p className="font-serif text-[#131111] text-[20px] leading-[24px]">
-                    Tickets
-                  </p>
-                </div>
-                <div className="mt-[22px] ml-4">
-                  {formValues.map((element, index) => (
-                    <div className="form-inline" key={index}>
-                      <input
-                        min={1}
-                        type="number"
-                        className="mb-2 buy-input"
-                        maxLength={6}
-                        name="price"
-                        value={element.price || ""}
-                        onChange={(e) => {
-                          handleChange(index, e);
-                          if (element.price.length <= 0)
-                            removeFormFields(index);
-                        }}
-                      />
-
-                      {/* {index ? (
-                        <button
-                          type="button"
-                          className="button remove"
-                          onClick={() => removeFormFields(index)}
-                        >
-                          Remove
-                        </button>
-                      ) : null} */}
-                    </div>
-                  ))}
-                </div>
                 <div className="flex items-center justify-between mt-[30px] ml-4 ">
                   <p className="font-serif text-[#131111] text-[20px] leading-[24px]">
-                    Cost
+                    no lottery available
                   </p>
-
-                  <p className="font-serif text-[#131111] text-[20px] leading-[24px]">
-                    {paymentMethod == 0
-                      ? "~BNB " + ethers.utils.formatEther(price)
-                      : "~$ " + price}
-                  </p>
-                </div>
-                <div className="border-b mt-[50px] border-[#F0F0F0]"></div>
-                <div className="flex items-center justify-between mt-[20px] ml-4 ">
-                  <p className="font-serif font-extrabold text-[#131111] text-[30px] leading-[36px]">
-                    You pay
-                  </p>
-
-                  <p className="font-serif font-extrabold text-[#131111] text-[30px] leading-[36px]">
-                    {paymentMethod == 0
-                      ? "~BNB " +
-                        ethers.utils.formatEther(price) * formValues.length
-                      : "~$ " + price * formValues.length}
-                  </p>
-                </div>
-                <div className="mt-[70px] w-full ">
-                  {isConnected ? (
-                    <button
-                      onClick={() => write()}
-                      className="font-sans text-body rounded-[10px] w-full font-normal leading-[28px] text-[24px] py-[16px] px-[34px]  h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
-                    >
-                      Buy Tickets
-                    </button>
-                  ) : (
-                    <Button style={{ width: "100%" }} />
-                  )}
                 </div>
               </div>
             </Transition.Child>
@@ -248,7 +170,7 @@ export default function Modal({ open, setOpen }) {
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-[999999999999999999]overflow-y-auto"
           onClose={setOpen}
         >
           <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">

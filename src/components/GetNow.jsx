@@ -60,10 +60,10 @@ const GetNow = () => {
   const date = new Date(timestamp * 1000);
 
   // console.log(rawstatus[5]);
-
+  console.log(status, "ststatsttatstatstststattstasttsatstus");
   if (status == 0 || status == 1) {
     return (
-      <section className="container mx-auto ">
+      <section id="get" className="container mx-auto ">
         <h2 className="md:mt-[145px] mt-28 text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
           Get your tickets now!
         </h2>

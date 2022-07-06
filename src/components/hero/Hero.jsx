@@ -18,7 +18,7 @@ const Hero = () => {
             <br /> Win The Prizes
           </h1>
 
-          <div className="flex items-center justify-center w-full space-x-4 lg:justify-start">
+          <div className="flex items-center justify-center w-full mb-6 space-x-4 x lg:justify-start">
             <Buy />
           </div>
         </div>

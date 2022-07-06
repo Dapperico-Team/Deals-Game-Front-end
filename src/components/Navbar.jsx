@@ -17,10 +17,18 @@ const Navbar = () => {
       <div className="items-center justify-between hidden lg:flex ">
         <nav>
           <ul className="flex space-x-[25px]  font-sans ">
-            <li>Get your ticket</li>
-            <li>Finished rounds</li>
-            <li>How it works</li>
-            <li>Winning Criteria</li>
+            <a href="#get">
+              <li>Get your ticket</li>
+            </a>
+            <a href="#finish">
+              <li>Finished rounds</li>
+            </a>
+            <a href="#work">
+              <li>How it works</li>
+            </a>
+            <a href="#win">
+              <li>Winning Criteria</li>
+            </a>
           </ul>
         </nav>
 
