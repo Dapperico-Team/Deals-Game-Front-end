@@ -91,7 +91,7 @@ export default function Modal({ open, setOpen }) {
     setFormValues(newFormValues);
   };
 
-  if (status == 1) {
+  if (status !== 1) {
     return (
       <Transition.Root show={open} as={Fragment}>
         <Dialog
