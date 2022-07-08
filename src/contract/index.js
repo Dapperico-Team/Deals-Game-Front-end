@@ -1,4 +1,4 @@
-export const contractAddress = "0x87E092A4a2F75857ed4055Ea9FFFE53519158232";
+export const contractAddress = process.env.CONTRACT_ADDRESS;
 export const contractABI = [
   {
     anonymous: false,
