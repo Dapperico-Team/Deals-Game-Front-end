@@ -15,7 +15,7 @@ const HowTo = () => {
         </p>
         <div className="mt-[135.42px] ">
           <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 xl:grid-cols-3">
-            <div className=" mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
+            <div className=" mb-10 md:min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
               <div className="-mt-14">
                 <div>
                   <span
@@ -31,13 +31,13 @@ const HowTo = () => {
                 <h3
                   className={
                     theme === "dark"
-                      ? "font-serif font-normal text-[24px] title mt-[40px]"
-                      : "font-serif font-normal text-[24px] text-[#9E0091] mt-[40px]"
+                      ? "font-serif font-normal text-[24px] title mt-[20px] sm:mt-[40px]"
+                      : "font-serif font-normal text-[24px] text-[#9E0091] mt-[20px] sm:mt-[40px]"
                   }
                 >
                   Buy Tickets
                 </h3>
-                <p className="mt-[39px] font-sans mx-auto  text-[22px] text-center leading-[26px] font-normal text-primary">
+                <p className="  sm:mt-[39px]  font-sans mx-auto  text-[22px] text-center leading-[26px] font-normal text-primary">
                   Connect your wallet easily! Choose your favorite campaign to
                   participate from the list of available campaigns*. Get a
                   ticket and try your luck at winning**. After the purchase, you
@@ -45,7 +45,7 @@ const HowTo = () => {
                 </p>
               </div>
             </div>
-            <div className=" mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
+            <div className=" mb-10 md:min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
               <div className="-mt-14">
                 <div>
                   <span
@@ -73,7 +73,7 @@ const HowTo = () => {
                 </p>
               </div>
             </div>
-            <div className="  mb-10 min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
+            <div className="  mb-10 md:min-h-[435.88px] max-w-[400.3px] px-6 pb-8 rounded-lg white-grad glass">
               <div className="-mt-14">
                 <div>
                   <span
@@ -89,13 +89,13 @@ const HowTo = () => {
                 <h3
                   className={
                     theme === "dark"
-                      ? "font-serif font-normal text-[24px] title mt-[40px]"
-                      : "font-serif font-normal text-[24px] text-[#9E0091] mt-[40px]"
+                      ? "font-serif font-normal text-[24px] title mt-[20px] sm:mt-[40px]"
+                      : "font-serif font-normal text-[24px] text-[#9E0091] mt-[20px] sm:mt-[40px]"
                   }
                 >
                   Win the prizes
                 </h3>
-                <p className="mt-[39px]  font-sans mx-auto  text-[22px] text-center leading-[26px] font-normal text-primary">
+                <p className="mt-[15px]   sm:mt-[39px]  font-sans mx-auto  text-[22px] text-center leading-[26px] font-normal text-primary">
                   Check out the prizes. Go to Dealsgame.com. The winning numbers
                   will be available and visible to everyone. Each game has many
                   lucky winners and you can be one of them. Claim your winning
@@ -107,7 +107,7 @@ const HowTo = () => {
         </div>
       </div>
 
-      <p className="text-[24px] leading-[57px] font-normal p-28">
+      <p className="text-[24px] leading-[57px] font-normal p-6 sm:p-28">
         <span className=" text-[#CB5DFF]">* </span> Depending on the campaign
         you can participate in the lottery with BUSD or BNB. <br />
         <span className=" text-[#CB5DFF]">** </span>Each person can buy up to 10

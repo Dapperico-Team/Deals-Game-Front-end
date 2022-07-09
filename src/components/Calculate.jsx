@@ -6,7 +6,7 @@ import Cont from "../asset/result.svg";
 const Calculate = () => {
   return (
     <section id="work" className="container mx-auto ">
-      <h2 className="mt-[145px] text-center p-6  xl:text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
+      <h2 className="sm:mt-[145px] text-center p-6  xl:text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
         How the Winning is calculated:
       </h2>
       <div className="flex flex-col items-center xl:flex-row ">

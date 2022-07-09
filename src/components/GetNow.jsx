@@ -11,7 +11,6 @@ import { useContractRead } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 const GetNow = () => {
   const { theme } = useContext(ThemeContext);
-
   const getCurrent = async () => {
     const res = await fetch("http://165.227.44.103:2000/api/currentLottary");
     const data = await res.json();
@@ -59,8 +58,8 @@ const GetNow = () => {
 
   const date = new Date(timestamp * 1000);
 
-  // console.log(rawstatus[5]);
-  console.log(status, "ststatsttatstatstststattstasttsatstus");
+  console.log(current, "currrrrrrrrrrrrr");
+
   if (status == 0 || status == 1) {
     return (
       <section id="get" className="container mx-auto ">
