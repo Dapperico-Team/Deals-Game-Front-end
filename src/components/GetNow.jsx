@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import dashed from "../asset/dashLine.svg";
 import Buy from "./button/Buy";
 import Down from "../asset/ArrowDown";
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Transition } from "@headlessui/react";
 import { ThemeContext } from "../context/ThemeContext";
 import "./getnow.css";
 import { useContractRead } from "wagmi";
@@ -109,22 +109,31 @@ const GetNow = () => {
                 <Disclosure>
                   {({ open }) => (
                     <>
-                      <Disclosure.Panel className="px-8 pt-4 pb-2 text-sm text-gray-500 bg-transparent">
-                        <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
-                          {current?.eachGroupWins?.map((item, index) => (
-                            <div>
-                              <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
-                                Match First {index + 1}
-                              </h5>
-                              <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                {rawstatus && rawstatus[5] == 0
-                                  ? "~BNB " + ethers.utils.formatEther(item)
-                                  : "~$ " + item}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </Disclosure.Panel>
+                      <Transition
+                        enter="transition duration-500 ease-out"
+                        enterFrom="transform scale-95 opacity-0"
+                        enterTo="transform scale-100 opacity-100"
+                        leave="transition duration-500 ease-out"
+                        leaveFrom="transform scale-100 opacity-100"
+                        leaveTo="transform scale-95 opacity-0"
+                      >
+                        <Disclosure.Panel className="px-8 pt-4 pb-2 text-sm text-gray-500 bg-transparent">
+                          <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
+                            {current?.eachGroupWins?.map((item, index) => (
+                              <div>
+                                <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                  Match First {index + 1}
+                                </h5>
+                                <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
+                                  {rawstatus && rawstatus[5] == 0
+                                    ? "~BNB " + ethers.utils.formatEther(item)
+                                    : "~$ " + item}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </Disclosure.Panel>
+                      </Transition>
                       <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-gray-200  ">
                         <span className="text-[22px] text-card">Details</span>
 
