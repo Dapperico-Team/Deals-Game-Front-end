@@ -1,6 +1,8 @@
 import React from "react";
-import poly from "../asset/PolygonAbout.svg";
+import poly from "../asset/PolygonWinners.svg";
 import Slider from "react-slick";
+
+import Line from "../asset/Line.svg";
 import "./winners.css";
 
 const Winners = () => {
@@ -63,12 +65,12 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div className=" border border-[#9B9B9B]   border-dashed "></div>
+            <img src={Line} alt="dashedLine"></img>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[23px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -76,7 +78,7 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
                 winning prize:{" "}
               </h4>
-              <p className="fonet-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
+              <p className="font-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
                 $65,654
               </p>
             </div>
@@ -93,12 +95,12 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div className=" border border-[#9B9B9B]   border-dashed "></div>
+            <img src={Line} alt="dashedLine"></img>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[23px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -106,7 +108,7 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
                 winning prize:{" "}
               </h4>
-              <p className="fonet-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
+              <p className="font-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
                 $65,654
               </p>
             </div>
@@ -123,12 +125,12 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div className=" border border-[#9B9B9B]   border-dashed "></div>
+            <img src={Line} alt="dashedLine"></img>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[23px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -136,7 +138,7 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
                 winning prize:{" "}
               </h4>
-              <p className="fonet-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
+              <p className="font-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
                 $65,654
               </p>
             </div>
@@ -153,12 +155,12 @@ const Winners = () => {
                 match first 1
               </h3>
             </div>
-            <div className=" border border-[#9B9B9B]   border-dashed "></div>
+            <img src={Line} alt="dashedLine"></img>
             <div className=" px-[37.7px] pt-[50px] pb-[33px]">
               <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                 wallet ID:
               </h4>
-              <p className=" break-all font-serif text-[20px] leading-[29px] text-[#2C2C2C]">
+              <p className=" break-all font-serif text-[23px] leading-[29px] text-[#2C2C2C]">
                 hurfyyf6ef6y8ucgbdh
               </p>
             </div>
@@ -166,7 +168,37 @@ const Winners = () => {
               <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
                 winning prize:{" "}
               </h4>
-              <p className="fonet-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
+              <p className="font-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
+                $65,654
+              </p>
+            </div>
+          </div>
+          <div className="flex  mx-auto bg-white rounded-[31.2992px] card-slide ">
+            <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
+              <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
+                round
+              </h3>
+              <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
+                436
+              </span>
+              <h3 className="font-serif text-[18px] font-extrabold leading-[29px] text-[#2C2C2C]">
+                match first 1
+              </h3>
+            </div>
+            <img src={Line} alt="dashedLine"></img>
+            <div className=" px-[37.7px] pt-[50px] pb-[33px]">
+              <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
+                wallet ID:
+              </h4>
+              <p className=" break-all font-serif text-[23px] leading-[29px] text-[#2C2C2C]">
+                hurfyyf6ef6y8ucgbdh
+              </p>
+            </div>
+            <div className="px-[37.7px] pb-[28.78px]">
+              <h4 className="font-serif text-[20px] font-normal leading-[24px] text-[#A2A2A2]">
+                winning prize:{" "}
+              </h4>
+              <p className="font-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
                 $65,654
               </p>
             </div>

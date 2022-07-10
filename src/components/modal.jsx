@@ -58,10 +58,6 @@ export default function Modal({ open, setOpen }) {
     overrides: { value: a },
   });
 
-  console.log(ID?.toString() - 1, str, paymentMethod, a);
-  console.log(buydata, "buydta");
-  console.log(text, "errror");
-  console.log(buyerror, "buyerror");
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
 
