@@ -7,10 +7,10 @@ const HowTo = () => {
   return (
     <div className="container py-16 mx-auto element sm:py-24 lg:py-32">
       <div className="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="font-serif text-[40px] leading-[48px] font-extrabold  text-primary sm:text-4xl">
+        <h2 className="font-serif text-[40px] leading-[48px] font-extrabold  text-accent sm:text-4xl">
           How to participate in the Lottery
         </h2>
-        <p className=" mx-auto mt-[28px] text-[30px] text-[#828991] leading-[35.55px] font-normal ">
+        <p className=" mx-auto mt-[19.58px] text-[30px] text-[#828991] leading-[35.55px] font-normal ">
           The lottery mechanism is based on a smart contract.
         </p>
         <div className="mt-[135.42px] ">
@@ -107,7 +107,7 @@ const HowTo = () => {
         </div>
       </div>
 
-      <p className="text-[24px] leading-[57px] font-normal p-6 sm:p-28">
+      <p className="text-[24px] leading-[57px] font-normal p-6 sm:px-28">
         <span className=" text-[#CB5DFF]">* </span> Depending on the campaign
         you can participate in the lottery with BUSD or BNB. <br />
         <span className=" text-[#CB5DFF]">** </span>Each person can buy up to 10

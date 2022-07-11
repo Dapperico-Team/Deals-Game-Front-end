@@ -13,7 +13,7 @@ import six from "../asset/6.png";
 import "./tabs.css";
 import { ethers } from "ethers";
 import { Disclosure, Transition } from "@headlessui/react";
-import { useContractRead } from "wagmi";
+import { useContractRead, useAccount } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 
 function useWindowSize() {
@@ -30,6 +30,7 @@ function useWindowSize() {
 }
 
 const Tabs = ({ color }) => {
+  const { address } = useAccount();
   const [openTab, setOpenTab] = React.useState(1);
   const [allLottaries, setAllLottaries] = useState([]);
   const [width, height] = useWindowSize();
@@ -41,21 +42,33 @@ const Tabs = ({ color }) => {
   //   args: ID?.toString() - 1,
   // });
 
-  const getAllLottaries = async () => {
-    const res = await fetch("http://165.227.44.103:2000/api/allLottaries");
-    const data = await res.json();
-    return data;
+  const postClaim = async (lotteryID) => {
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        lottaryId: lotteryID,
+        userAddress: address,
+      }),
+    };
+    try {
+      const fetchResponse = await fetch(
+        `http://165.227.44.103:2000/api/claim_reward`,
+        settings
+      );
+      const data = await fetchResponse.json();
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
   };
-
-  useEffect(() => {
-    getAllLottaries()
-      .then((data) => {
-        setAllLottaries(data?.lottariesData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // const result1 = await postClaim();
+  (async () => {
+    console.log(await postClaim(), "rererrererererererere");
+  })();
 
   function SampleNextArrow(props) {
     const { className, onClick } = props;
@@ -79,12 +92,158 @@ const Tabs = ({ color }) => {
     );
   }
 
-  console.log({ width });
+  const values = [
+    {
+      _id: "62c99b03b16477792f5e136d",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 0,
+      ticket: "123456",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 1,
+    },
+    {
+      _id: "62c99b03b16477792f5e136e",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 0,
+      ticket: "234567",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 1,
+    },
+    {
+      _id: "62c99b03b16477792f5e136f",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 0,
+      ticket: "345678",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 1,
+    },
+    {
+      _id: "62c99b03b16477792f5e1370",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 0,
+      ticket: "456789",
+      winAmount: 1,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 1,
+    },
+    {
+      _id: "62c99b03b16477792f5e1371",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 0,
+      ticket: "567899",
+      winAmount: 1,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 1,
+    },
+    {
+      _id: "62caad7db16477792f5e13a7",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "111111",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13a8",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "222222",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13a9",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "333333",
+      winAmount: 6115989592,
+      matchGroup: 1,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13aa",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "444444",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13ab",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "555555",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13ac",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "666666",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13ad",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "777777",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13ae",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "888888",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+    {
+      _id: "62caad7db16477792f5e13af",
+      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
+      lottaryId: 1,
+      ticket: "999999",
+      winAmount: 0,
+      matchGroup: 7,
+      __v: 0,
+      isPaid: 2,
+    },
+  ];
+  let result = values.reduce(function (r, a) {
+    r[a.lottaryId] = r[a.lottaryId] || [];
+    r[a.lottaryId].push(a);
+    return r;
+  }, Object.create(null));
 
   const settings =
     width < 768
       ? {
-          infinite: true,
+          infinite: false,
           arrows: false,
           dots: false,
           speed: 500,
@@ -94,7 +253,7 @@ const Tabs = ({ color }) => {
           // prevArrow: <SamplePrevArrow />,
         }
       : {
-          infinite: true,
+          infinite: false,
           arrows: true,
           dots: false,
           speed: 500,
@@ -151,12 +310,69 @@ const Tabs = ({ color }) => {
           </ul>
         </div>
 
-        <div
-          className={
-            openTab === 1 ? "flex items-center justify-center" : "hidden"
-          }
-          id="link1"
-        ></div>
+        <div className={openTab === 1 ? "block" : "hidden"} id="link1">
+          <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
+            <Slider {...settings}>
+              {Object.values(result)?.map((lottary, index) => (
+                <div className="card-border max-w-[856px]  rounded-[51px]    mx-auto  ">
+                  <div className="bg-white  rounded-[51px] z-50">
+                    <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
+                      <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
+                        Round{" "}
+                        <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
+                          {lottary[0]?.lottaryId}
+                        </span>
+                      </h3>
+                      <div>
+                        <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
+                          Drawn{" "}
+                          {/* {new Date(lottary.endTime * 1000)
+          .toString()
+          .substring(0, 21)} */}
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-start  ml-[90px]">
+                      <div>
+                        {" "}
+                        <h3 className="font-serif text-[20px]  leading-[24px] text-[#2C2C2C]">
+                          number of Tickets: <span>{lottary?.length}</span>
+                        </h3>{" "}
+                      </div>
+                      <div>
+                        {" "}
+                        <h3 className="font-serif text-[20px]  leading-[24px] mt-[32px] text-[#2C2C2C]">
+                          Rewarded:{" "}
+                          <span>
+                            {" "}
+                            {lottary.reduce((sum, b) => sum + b.winAmount, 0)}
+                          </span>
+                        </h3>{" "}
+                      </div>
+                    </div>
+                    <div className="mb-3 rounded-b-xl">
+                      <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+                        {lottary.reduce((sum, b) => sum + b.winAmount, 0) &&
+                        lottary[0]?.isPaid === 1 ? (
+                          <button
+                            onClick={() => postClaim(lottary[0]?.lottaryId)}
+                            className="font-sans text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
+                          >
+                            Claim
+                          </button>
+                        ) : (
+                          <button className="font-sans cursor-not-allowed text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gray-400">
+                            Claim
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
         <div className={openTab === 2 ? "block" : "hidden"} id="link2">
           <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
             <Slider {...settings}>
