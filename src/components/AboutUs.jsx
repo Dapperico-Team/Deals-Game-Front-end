@@ -8,7 +8,7 @@ const AboutUs = () => {
       <h2 className="mt-[145px] text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
         About Us
       </h2>
-      <div className="flex flex-col items-center xl:flex-row ">
+      <div className="flex flex-col items-center lg:flex-row ">
         <div className="relative left-0 w-1/2">
           <img
             src={poly}
@@ -22,7 +22,7 @@ const AboutUs = () => {
           />
         </div>
 
-        <div className="lg:w-[535.15px] lg:h-[196px] ">
+        <div className="xl:w-[535.15px] xl:h-[196px] ">
           <p className=" ml-2 p-8  text-left xl:-ml-12  font-sans font-normal lg:text-[24px] lg:leading-[28.44px] text-primary   ">
             Deals game gives lottery lovers a chance to win a portion from Deals
             game pool.

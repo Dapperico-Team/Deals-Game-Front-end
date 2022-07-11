@@ -14,7 +14,7 @@ const NoBody = () => {
         <img
           src={Image}
           alt="nobody  "
-          className="flex xl:right-0 xl:absolute xl:top-48 "
+          className="flex xl:right-0 xl:absolute xl:top-[170px] "
         />
       </div>
       <div className="flex flex-col items-start p-6 xl:ml-[145px] ">

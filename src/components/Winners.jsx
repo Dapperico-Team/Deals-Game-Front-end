@@ -73,7 +73,7 @@ const Winners = () => {
 
   return (
     <section id="win" className="container mx-auto ">
-      <h2 className="mt-[145px] text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
+      <h2 className="mt-[145px] m-6 text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
         The names of the winners
       </h2>
       <div className="relative  mt-[50px]">
@@ -99,7 +99,7 @@ const Winners = () => {
                   match first 1
                 </h3>
               </div>
-              <img src={Line} alt="dashedLine"></img>
+              <img src={Line} alt="dashedLine" className="w-full"></img>
               <div className=" px-[37.7px] pt-[50px] pb-[33px]">
                 <h4 className="font-serif text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                   wallet ID:

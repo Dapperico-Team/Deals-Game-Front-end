@@ -39,7 +39,7 @@ const Navbar = () => {
   });
   const { theme } = useContext(ThemeContext);
   return (
-    <header className=" container mx-auto flex items-end justify-between pt-[50px] p-6 lg:px-[42px] bg-primary max-w-[1440px]">
+    <header className=" container mx-auto flex items-center justify-between pt-[50px] p-6 lg:px-[42px] bg-primary max-w-[1440px]">
       <div className=" flex space-x-[10.52px] w-[200px]  lg:w-auto ">
         <Logo theme={theme} />
         <LogoText theme={theme} />
@@ -85,7 +85,7 @@ const Navbar = () => {
         >
           <span className="sr-only">Menu</span>
           <svg
-            className="w-7 h-7 mb-2 text-gray-900 transition duration-150 ease-in-out fill-current hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+            className="mb-2 text-gray-900 transition duration-150 ease-in-out fill-current w-7 h-7 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -110,18 +110,25 @@ const Navbar = () => {
           <nav
             id="mobile-nav"
             ref={mobileNav}
-            className="fixed top-0 left-0 z-20 w-full h-screen   bg-white shadow-lg dark:bg-gray-900 no-scrollbar"
+            className="fixed top-0 left-0 z-20 w-full h-screen bg-white shadow-lg dark:bg-gray-900 no-scrollbar"
           >
             <div className="py-6 pl-20 pr-4">
               {/* Logo */}
-
-              <div className="w-[200px] mx-auto flex items-center justify-center text-center  ">
-                <Logo theme={theme} />
-                <LogoText theme={theme} />
+              <div className="flex items-center justify-between">
+                <div className="w-[200px]  flex items-center justify-between text-center  ">
+                  <Logo theme={theme} />
+                  <LogoText theme={theme} />
+                </div>
+                <div>
+                  <ThemeToggle />
+                </div>
               </div>
 
               {/* Links */}
-              <ul className=" h-screen justify-center  flex flex-col items-center text-center">
+              <ul className="flex flex-col items-center justify-center h-screen text-center ">
+                <div className="flex items-center justify-center  mb-[50px]">
+                  <Button />
+                </div>
                 <a
                   href="#get "
                   className="flex py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"

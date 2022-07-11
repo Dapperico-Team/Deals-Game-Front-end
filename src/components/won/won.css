@@ -1,5 +1,5 @@
 .shape {
-  display: "block";
+  display: "flex";
   background: linear-gradient(180deg, #ffe68d 0%, #d9a913 100%);
   border-radius: 40px;
 }
