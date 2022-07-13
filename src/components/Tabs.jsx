@@ -16,27 +16,28 @@ import { Disclosure, Transition } from "@headlessui/react";
 import { useWaitForTransaction, useContractWrite, useAccount } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 
-// function useWindowSize() {
-//   const [size, setSize] = useState([0, 0]);
-//   useLayoutEffect(() => {
-//     function updateSize() {
-//       setSize([window.innerWidth, window.innerHeight]);
-//     }
-//     window.addEventListener("resize", updateSize);
-//     updateSize();
-//     return () => window.removeEventListener("resize", updateSize);
-//   }, []);
-//   return size;
-// }
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
 
 const Tabs = ({ color }) => {
   const { address } = useAccount();
   const [openTab, setOpenTab] = React.useState(1);
-  const [LotteryID, setLotteryID] = useState("");
+  const [userTickets, setUserTickets] = useState([]);
+
   const [allLottaries, setAllLottaries] = useState([]);
 
   const [cliamResult, setCliamResult] = useState(null);
-  // const [width, height] = useWindowSize();
+  const [width, height] = useWindowSize();
 
   // const { data, isError, isLoading, error } = useContractRead({
   //   addressOrName: contractAddress,
@@ -64,9 +65,16 @@ const Tabs = ({ color }) => {
       );
       const data = await fetchResponse.json();
 
-      //  setCliamResult(data);
+      // setCliamResult(data);
 
-      // write();
+      write({
+        args: [
+          data?.message,
+          data?.signedMessage,
+          lotteryID,
+          data?.paymentMethod,
+        ],
+      });
     } catch (e) {
       console.log(e);
     }
@@ -88,12 +96,7 @@ const Tabs = ({ color }) => {
     //   2,
     //   cliamResult?.paymentMethod,
     // ],
-    args: [
-      369000000000000,
-      "0x35258a7e2b2676f21aada7ad482b4fd1cb681fe97fb675088a28b51d845c3a813e95a32e8b72c4bca3aaeb3a4e9f672af6d559886edd93edabcaa6294b9b773d1b",
-      2,
-      0,
-    ],
+
     onSuccess(data) {
       console.log("Success", data);
     },
@@ -128,6 +131,39 @@ const Tabs = ({ color }) => {
     );
   }
 
+  const getUserTickets = async () => {
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userAddress: address,
+      }),
+    };
+    try {
+      const fetchResponse = await fetch(
+        `http://165.227.44.103:2000/api/userTickets`,
+        settings
+      );
+      const data = await fetchResponse.json();
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getUserTickets()
+      .then((data) => {
+        setUserTickets(data.ticketsList); // set current lottary
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [address]);
   const values = [
     {
       _id: "62c99b03b16477792f5e136d",
@@ -270,44 +306,38 @@ const Tabs = ({ color }) => {
       isPaid: 2,
     },
   ];
-  let result = values.reduce(function (r, a) {
-    r[a.lottaryId] = r[a.lottaryId] || [];
-    r[a.lottaryId].push(a);
-    return r;
-  }, Object.create(null));
-  const settings = {
-    infinite: false,
-    arrows: false,
-    dots: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-    // prevArrow: <SamplePrevArrow />,
-  };
+  let result =
+    userTickets.length > 0 &&
+    userTickets?.reduce(function (r, a) {
+      r[a.lottaryId] = r[a.lottaryId] || [];
+      r[a.lottaryId].push(a);
+      return r;
+    }, Object.create(null));
 
-  // const settings =
-  //   width < 768
-  //     ? {
-  //         infinite: false,
-  //         arrows: false,
-  //         dots: false,
-  //         speed: 500,
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //         // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-  //         // prevArrow: <SamplePrevArrow />,
-  //       }
-  //     : {
-  //         infinite: false,
-  //         arrows: true,
-  //         dots: false,
-  //         speed: 500,
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //         nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-  //         prevArrow: <SamplePrevArrow />,
-  //       };
+  const settings =
+    width < 768
+      ? {
+          infinite: false,
+          arrows: false,
+          dots: false,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+          // prevArrow: <SamplePrevArrow />,
+        }
+      : {
+          infinite: false,
+          arrows: true,
+          dots: false,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+          prevArrow: <SamplePrevArrow />,
+        };
+
+  console.log(userTickets, "usertickets");
 
   return (
     <>
@@ -360,7 +390,10 @@ const Tabs = ({ color }) => {
           <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
             <Slider {...settings}>
               {Object.values(result)?.map((lottary, index) => (
-                <div className="card-border max-w-[856px]  rounded-[51px]    mx-auto  ">
+                <div
+                  // key={index}
+                  className="card-border max-w-[856px]  rounded-[51px]    mx-auto  "
+                >
                   <div className="bg-white  rounded-[51px] z-50">
                     <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
                       <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
@@ -372,9 +405,9 @@ const Tabs = ({ color }) => {
                       <div>
                         <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                           Drawn{" "}
-                          {/* {new Date(lottary.endTime * 1000)
-          .toString()
-          .substring(0, 21)} */}
+                          {new Date(lottary[0].EndTime * 1000)
+                            .toString()
+                            .substring(0, 21)}
                         </h4>
                       </div>
                     </div>
@@ -382,7 +415,7 @@ const Tabs = ({ color }) => {
                       <div>
                         {" "}
                         <h3 className="font-serif text-[20px]  leading-[24px] text-[#2C2C2C]">
-                          {/* number of Tickets: <span>{lottary?.length}</span> */}
+                          number of Tickets: <span>{lottary?.length}</span>
                         </h3>{" "}
                       </div>
                       <div>
@@ -402,9 +435,7 @@ const Tabs = ({ color }) => {
                         lottary[0]?.isPaid === 1 ? (
                           <button
                             onClick={() => {
-                              write();
-                              // postClaim(lottary[0]?.lottaryId);
-                              // setLotteryID(lottary[0]?.lottaryId);
+                              postClaim(lottary[0]?.lottaryId);
                             }}
                             className="font-sans text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
                           >
@@ -482,7 +513,6 @@ const Tabs = ({ color }) => {
                       <div className="relative flex items-center justify-center ">
                         <img src={one} alt="" className="relative" />
                         <div className="absolute top-2 left-[13px]  md:top-6 md:left-9 font-serif text-[#2C2C2C] text-[20px]  md:text-[30px]">
-                          {/* {wincode && wincode?.substring(0, 1)} */}
                           {lottary && lottary?.winCode?.substring(0, 1)}
                         </div>
                       </div>
@@ -518,12 +548,6 @@ const Tabs = ({ color }) => {
                         </div>
                       </div>
                     </div>
-
-                    {/* <div className="mb-3 rounded-b-xl">
-                          <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
-                            <Buy />
-                          </div>
-                        </div> */}
 
                     <div className=" z-50  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
                       <Disclosure>
