@@ -58,8 +58,6 @@ const GetNow = () => {
 
   const date = new Date(timestamp * 1000);
 
-  console.log(current, "currrrrrrrrrrrrr");
-
   if (status == 0 || status == 1) {
     return (
       <section id="get" className="container mx-auto ">

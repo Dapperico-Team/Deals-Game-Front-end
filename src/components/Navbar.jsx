@@ -31,7 +31,7 @@ const Navbar = () => {
   // close the mobile menu if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
-      if (!mobileNavOpen || keyCode !== 27) return;
+      if (keyCode !== 27) return;
       setMobileNavOpen(false);
     };
     document.addEventListener("keydown", keyHandler);
@@ -130,7 +130,7 @@ const Navbar = () => {
                   <Button />
                 </div>
                 <a
-                  href="#get "
+                  href="#get"
                   className="flex py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
                 >
                   <li>Get your ticket</li>

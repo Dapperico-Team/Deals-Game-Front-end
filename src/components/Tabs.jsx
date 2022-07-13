@@ -13,27 +13,30 @@ import six from "../asset/6.png";
 import "./tabs.css";
 import { ethers } from "ethers";
 import { Disclosure, Transition } from "@headlessui/react";
-import { useContractRead, useAccount } from "wagmi";
+import { useWaitForTransaction, useContractWrite, useAccount } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 
-function useWindowSize() {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}
+// function useWindowSize() {
+//   const [size, setSize] = useState([0, 0]);
+//   useLayoutEffect(() => {
+//     function updateSize() {
+//       setSize([window.innerWidth, window.innerHeight]);
+//     }
+//     window.addEventListener("resize", updateSize);
+//     updateSize();
+//     return () => window.removeEventListener("resize", updateSize);
+//   }, []);
+//   return size;
+// }
 
 const Tabs = ({ color }) => {
   const { address } = useAccount();
   const [openTab, setOpenTab] = React.useState(1);
+  const [LotteryID, setLotteryID] = useState("");
   const [allLottaries, setAllLottaries] = useState([]);
-  const [width, height] = useWindowSize();
+
+  const [cliamResult, setCliamResult] = useState(null);
+  // const [width, height] = useWindowSize();
 
   // const { data, isError, isLoading, error } = useContractRead({
   //   addressOrName: contractAddress,
@@ -50,7 +53,7 @@ const Tabs = ({ color }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        lottaryId: lotteryID,
+        lottaryId: 2,
         userAddress: address,
       }),
     };
@@ -60,15 +63,48 @@ const Tabs = ({ color }) => {
         settings
       );
       const data = await fetchResponse.json();
-      return data;
+
+      //  setCliamResult(data);
+
+      // write();
     } catch (e) {
       console.log(e);
     }
   };
-  // const result1 = await postClaim();
-  (async () => {
-    console.log(await postClaim(), "rererrererererererere");
-  })();
+
+  const {
+    data: cliamData,
+    isError: cliamError,
+    isLoading: cliamLoading,
+    error: text,
+    write,
+  } = useContractWrite({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "Claim_Reward",
+    // args: [
+    //   cliamResult?.message,
+    //   cliamResult?.signedMessage,
+    //   2,
+    //   cliamResult?.paymentMethod,
+    // ],
+    args: [
+      369000000000000,
+      "0x35258a7e2b2676f21aada7ad482b4fd1cb681fe97fb675088a28b51d845c3a813e95a32e8b72c4bca3aaeb3a4e9f672af6d559886edd93edabcaa6294b9b773d1b",
+      2,
+      0,
+    ],
+    onSuccess(data) {
+      console.log("Success", data);
+    },
+  });
+
+  console.log(cliamData, "dtaaaaaaaa");
+  console.log(text, "textextexttext");
+  console.log(cliamLoading, "loading");
+  // const { data, isError, isLoading } = useWaitForTransaction({
+  //   hash: cliamData?.transactionHash,
+  // });
 
   function SampleNextArrow(props) {
     const { className, onClick } = props;
@@ -239,29 +275,39 @@ const Tabs = ({ color }) => {
     r[a.lottaryId].push(a);
     return r;
   }, Object.create(null));
+  const settings = {
+    infinite: false,
+    arrows: false,
+    dots: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+    // prevArrow: <SamplePrevArrow />,
+  };
 
-  const settings =
-    width < 768
-      ? {
-          infinite: false,
-          arrows: false,
-          dots: false,
-          speed: 500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-          // prevArrow: <SamplePrevArrow />,
-        }
-      : {
-          infinite: false,
-          arrows: true,
-          dots: false,
-          speed: 500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-          prevArrow: <SamplePrevArrow />,
-        };
+  // const settings =
+  //   width < 768
+  //     ? {
+  //         infinite: false,
+  //         arrows: false,
+  //         dots: false,
+  //         speed: 500,
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+  //         // prevArrow: <SamplePrevArrow />,
+  //       }
+  //     : {
+  //         infinite: false,
+  //         arrows: true,
+  //         dots: false,
+  //         speed: 500,
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
+  //         prevArrow: <SamplePrevArrow />,
+  //       };
 
   return (
     <>
@@ -336,7 +382,7 @@ const Tabs = ({ color }) => {
                       <div>
                         {" "}
                         <h3 className="font-serif text-[20px]  leading-[24px] text-[#2C2C2C]">
-                          number of Tickets: <span>{lottary?.length}</span>
+                          {/* number of Tickets: <span>{lottary?.length}</span> */}
                         </h3>{" "}
                       </div>
                       <div>
@@ -355,7 +401,11 @@ const Tabs = ({ color }) => {
                         {lottary.reduce((sum, b) => sum + b.winAmount, 0) &&
                         lottary[0]?.isPaid === 1 ? (
                           <button
-                            onClick={() => postClaim(lottary[0]?.lottaryId)}
+                            onClick={() => {
+                              write();
+                              // postClaim(lottary[0]?.lottaryId);
+                              // setLotteryID(lottary[0]?.lottaryId);
+                            }}
                             className="font-sans text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
                           >
                             Claim
@@ -509,7 +559,7 @@ const Tabs = ({ color }) => {
                                   <div className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
                                     Total players this round:{" "}
                                     <span className="  custom-color text-[18px] leading-[21px] font-medium">
-                                      {lottary?.players.length}
+                                      {/* { lottary && lottary?.players?.length} */}
                                     </span>
                                   </div>
                                 </div>
