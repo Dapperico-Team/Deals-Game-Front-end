@@ -94,7 +94,7 @@ const Winners = () => {
                   round
                 </h3>
                 <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
-                  {user?.lottaryId}
+                  {user?.tickets[0]?.lottaryId}
                 </span>
                 <h3 className="font-serif text-[18px] font-extrabold leading-[29px] text-[#2C2C2C]">
                   match first 1
@@ -106,7 +106,7 @@ const Winners = () => {
                   wallet ID:
                 </h4>
                 <p className=" break-all font-serif text-[23px] leading-[29px] text-[#2C2C2C]">
-                  {user?.Useraddress}
+                  {user?.tickets[0]?.Useraddress}
                 </p>
               </div>
               <div className="px-[37.7px] pb-[28.78px]">
@@ -114,9 +114,11 @@ const Winners = () => {
                   winning prize:{" "}
                 </h4>
                 <p className="font-serif pt-3  text-[40px] font-extrabold leading-[48px] text-[#9E0091]  ">
-                  {/* {user.paymentMethod === 0
-                    ? "~BNB " + ethers.utils.formatEther(user?.winAmount)
-                    : "~$ " + user.winAmount} */}
+                  {parseInt(user.tickets[0]?.paymentMethod) === 0
+                    ? "~BNB " +
+                      ethers.utils.formatEther(user?.tickets[0]?.winAmount)
+                    : "~BUSD " +
+                      ethers.utils.formatEther(user?.tickets[0]?.winAmount)}
                 </p>
               </div>
             </div>

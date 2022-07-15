@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import Right from "../asset/ArrowRight.svg";
 import Left from "../asset/ArrowLeft.svg";
@@ -31,9 +31,10 @@ function useWindowSize() {
 
 const Tabs = ({ color }) => {
   const { address } = useAccount();
-  const [openTab, setOpenTab] = React.useState(1);
+  const [openTab, setOpenTab] = React.useState(2);
   const [userTickets, setUserTickets] = useState([]);
 
+  const slider = useRef(null);
   const [allLottaries, setAllLottaries] = useState([]);
 
   const [cliamResult, setCliamResult] = useState(null);
@@ -185,6 +186,10 @@ const Tabs = ({ color }) => {
           prevArrow: <SamplePrevArrow />,
         };
 
+  useEffect(() => {
+    slider.current.slickNext();
+  }, [address]);
+
   console.log(userTickets, "usertickets");
 
   return (
@@ -236,7 +241,11 @@ const Tabs = ({ color }) => {
 
         <div className={openTab === 1 ? "inline-block " : "hidden"} id="link1">
           <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
-            <Slider {...settings}>
+            <Slider
+              {...settings}
+              ref={slider}
+              onInit={() => slider?.current?.slickNext()}
+            >
               {Object.values(result)?.map((lottary, index) => (
                 <div
                   key={Date.now()}

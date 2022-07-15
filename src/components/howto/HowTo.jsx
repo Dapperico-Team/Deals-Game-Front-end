@@ -5,7 +5,7 @@ import "./howto.css";
 const HowTo = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="container py-16 mx-auto element sm:py-24 lg:py-32">
+    <div className="container pt-[100px] pb-[180px] mx-auto element ">
       <div className="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="font-serif text-[40px] leading-[48px] font-extrabold  text-accent sm:text-4xl">
           How to participate in the Lottery

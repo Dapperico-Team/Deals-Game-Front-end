@@ -9,6 +9,8 @@ import { ThemeContext } from "../context/ThemeContext";
 import "./getnow.css";
 import { useContractRead } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
+
+import Line from "../asset/Line.svg";
 const GetNow = () => {
   const { theme } = useContext(ThemeContext);
   const getCurrent = async () => {
@@ -95,7 +97,7 @@ const GetNow = () => {
                 {deals?.toString()?.split(",")?.length} &nbsp; DEALS
               </h3>
 
-              <div className=" border-2 border-[#9B9B9B]   border-dashed "></div>
+              <img src={Line} alt="dashed" className="w-full"></img>
 
               <div className="mb-3 rounded-b-xl">
                 <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
