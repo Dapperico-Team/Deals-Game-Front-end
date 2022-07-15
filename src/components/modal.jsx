@@ -6,9 +6,10 @@ import Plus from "../asset/Plus.svg";
 import "./modal.css";
 import Button from "../components/button/Connect";
 import Buy from "../components/button/Buy";
-import { useAccount } from "wagmi";
+import { useAccount, useWaitForTransaction } from "wagmi";
 import { useContractRead, useContractWrite } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../contract/aprove";
 import { ethers, BigNumber } from "ethers";
 
 export default function Modal({ open, setOpen }) {
@@ -41,21 +42,66 @@ export default function Modal({ open, setOpen }) {
   const status = rawstatus && rawstatus[4];
   const paymentMethod = rawstatus && rawstatus[5];
   const price = rawstatus && rawstatus[0];
-  const finalPrice = price && price * formValues?.length;
-  let a = finalPrice && BigNumber.from(finalPrice);
+  const finalPriceconvert = price && price * formValues?.length;
+
+  let finalPrice =
+    finalPriceconvert && BigNumber?.from(finalPriceconvert.toString());
 
   const {
     data: buydata,
     isError: buyerror,
     isLoading: buyloading,
     error: text,
-    write,
+    write: buyBNB,
   } = useContractWrite({
     addressOrName: contractAddress,
     contractInterface: contractABI,
     functionName: "Buy_Ticket",
     args: [ID?.toString() - 1, str, paymentMethod],
-    overrides: { value: a },
+    overrides: { value: finalPrice },
+    onError(error) {
+      console.log("ErrorBYBNB", error);
+    },
+    onSuccess(data) {
+      console.log("sucesssBYBNB", data);
+    },
+  });
+  const {
+    data: buyUsdtData,
+    isError: buyUsdterror,
+    isLoading: buyUsdtloading,
+    error: buyUsdttext,
+    write: buyUsdt,
+  } = useContractWrite({
+    addressOrName: contractAddress,
+    contractInterface: contractABI,
+    functionName: "Buy_Ticket",
+    args: [ID?.toString() - 1, str, paymentMethod],
+    onError(error) {
+      console.log("Error", error);
+    },
+    onSuccess(data) {
+      console.log("sucesss", data);
+    },
+  });
+  const {
+    data: approvedata,
+    isError: approveerror,
+    isLoading: approveloading,
+    error: approvetext,
+    write: call,
+  } = useContractWrite({
+    addressOrName: CONTRACT_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+    functionName: "approve",
+    args: [contractAddress, finalPrice],
+  });
+  const waitForTransaction = useWaitForTransaction({
+    hash: approvedata?.hash,
+    onSuccess(data) {
+      console.log(data, "approve trnsaction success");
+      buyUsdt();
+    },
   });
 
   let handleChange = (i, e) => {
@@ -73,8 +119,6 @@ export default function Modal({ open, setOpen }) {
     } else {
       return;
     }
-
-    console.log(e.target.value.length < 6, "targetrargettarger");
   };
 
   let addFormFields = () => {
@@ -86,8 +130,8 @@ export default function Modal({ open, setOpen }) {
     newFormValues.splice(i, 1);
     setFormValues(newFormValues);
   };
-
-  if (status !== 1) {
+  console.log(parseInt(paymentMethod) === 1, "paymentMethod");
+  if (parseInt(status) !== 1) {
     return (
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -279,28 +323,33 @@ export default function Modal({ open, setOpen }) {
                   </p>
 
                   <p className="font-serif text-[#131111] text-[20px] leading-[24px]">
-                    {paymentMethod == 0
-                      ? "~BNB " + ethers.utils.formatEther(price)
-                      : "~$ " + price}
+                    {parseInt(paymentMethod) === 0
+                      ? "~BNB " +
+                        ethers.utils.formatEther(price) * formValues.length
+                      : "~BUSD " +
+                        ethers.utils.formatEther(price) * formValues.length}
                   </p>
                 </div>
                 <div className="border-b mt-[50px] border-[#F0F0F0]"></div>
-                <div className="flex items-center justify-between mt-[20px] ml-4 ">
+                <div className="flex items-center flex-wrap justify-between mt-[20px] ml-4 ">
                   <p className="font-serif font-extrabold text-[#131111] text-[30px] leading-[36px]">
                     You pay
                   </p>
 
                   <p className="font-serif font-extrabold text-[#131111] text-[30px] leading-[36px]">
-                    {paymentMethod == 0
+                    {parseInt(paymentMethod) === 0
                       ? "~BNB " +
                         ethers.utils.formatEther(price) * formValues.length
-                      : "~$ " + price * formValues.length}
+                      : "~BUSD " +
+                        ethers.utils.formatEther(price) * formValues.length}
                   </p>
                 </div>
                 <div className="mt-[70px] w-full ">
                   {isConnected ? (
                     <button
-                      onClick={() => write()}
+                      onClick={() =>
+                        parseInt(paymentMethod) === 1 ? call() : buyBNB()
+                      }
                       className="font-sans text-body rounded-[10px] w-full font-normal leading-[28px] text-[24px] py-[16px] px-[34px]  h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
                     >
                       Buy Tickets

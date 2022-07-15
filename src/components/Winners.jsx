@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import Line from "../asset/Line.svg";
 import "./winners.css";
 import { ethers } from "ethers";
-import { parse } from "@ethersproject/transactions";
 
 const Winners = () => {
   const [allUsers, setAllUsers] = useState();
@@ -34,6 +33,8 @@ const Winners = () => {
   // );
 
   var merged = allUsers && [].concat.apply([], Object.values(allUsers));
+
+  console.log(merged, "merged");
 
   const settings = {
     // className: "center",

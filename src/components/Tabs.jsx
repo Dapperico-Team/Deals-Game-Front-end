@@ -54,7 +54,7 @@ const Tabs = ({ color }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        lottaryId: 2,
+        lottaryId: lotteryID,
         userAddress: address,
       }),
     };
@@ -65,11 +65,9 @@ const Tabs = ({ color }) => {
       );
       const data = await fetchResponse.json();
 
-      // setCliamResult(data);
-
       write({
         args: [
-          data?.message,
+          data?.message?.toString(),
           data?.signedMessage,
           lotteryID,
           data?.paymentMethod,
@@ -90,24 +88,17 @@ const Tabs = ({ color }) => {
     addressOrName: contractAddress,
     contractInterface: contractABI,
     functionName: "Claim_Reward",
-    // args: [
-    //   cliamResult?.message,
-    //   cliamResult?.signedMessage,
-    //   2,
-    //   cliamResult?.paymentMethod,
-    // ],
 
     onSuccess(data) {
       console.log("Success", data);
     },
   });
 
-  console.log(cliamData, "dtaaaaaaaa");
-  console.log(text, "textextexttext");
-  console.log(cliamLoading, "loading");
-  // const { data, isError, isLoading } = useWaitForTransaction({
-  //   hash: cliamData?.transactionHash,
-  // });
+  const { data, isError, isLoading } = useWaitForTransaction({
+    hash: cliamData?.hash,
+  });
+
+  console.log(data, "lastttttttttttttttt");
 
   function SampleNextArrow(props) {
     const { className, onClick } = props;
@@ -164,148 +155,7 @@ const Tabs = ({ color }) => {
         console.log(err);
       });
   }, [address]);
-  const values = [
-    {
-      _id: "62c99b03b16477792f5e136d",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 0,
-      ticket: "123456",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 1,
-    },
-    {
-      _id: "62c99b03b16477792f5e136e",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 0,
-      ticket: "234567",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 1,
-    },
-    {
-      _id: "62c99b03b16477792f5e136f",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 0,
-      ticket: "345678",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 1,
-    },
-    {
-      _id: "62c99b03b16477792f5e1370",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 0,
-      ticket: "456789",
-      winAmount: 1,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 1,
-    },
-    {
-      _id: "62c99b03b16477792f5e1371",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 0,
-      ticket: "567899",
-      winAmount: 1,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 1,
-    },
-    {
-      _id: "62caad7db16477792f5e13a7",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "111111",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13a8",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "222222",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13a9",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "333333",
-      winAmount: 6115989592,
-      matchGroup: 1,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13aa",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "444444",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13ab",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "555555",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13ac",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "666666",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13ad",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "777777",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13ae",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "888888",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-    {
-      _id: "62caad7db16477792f5e13af",
-      Useraddress: "0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279",
-      lottaryId: 1,
-      ticket: "999999",
-      winAmount: 0,
-      matchGroup: 7,
-      __v: 0,
-      isPaid: 2,
-    },
-  ];
+
   let result =
     userTickets.length > 0 &&
     userTickets?.reduce(function (r, a) {
@@ -323,8 +173,6 @@ const Tabs = ({ color }) => {
           speed: 500,
           slidesToShow: 1,
           slidesToScroll: 1,
-          // nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-          // prevArrow: <SamplePrevArrow />,
         }
       : {
           infinite: false,
@@ -386,12 +234,12 @@ const Tabs = ({ color }) => {
           </ul>
         </div>
 
-        <div className={openTab === 1 ? "block" : "hidden"} id="link1">
+        <div className={openTab === 1 ? "inline-block " : "hidden"} id="link1">
           <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
             <Slider {...settings}>
               {Object.values(result)?.map((lottary, index) => (
                 <div
-                  // key={index}
+                  key={Date.now()}
                   className="card-border max-w-[856px]  rounded-[51px]    mx-auto  "
                 >
                   <div className="bg-white  rounded-[51px] z-50">
