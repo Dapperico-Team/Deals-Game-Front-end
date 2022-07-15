@@ -99,8 +99,6 @@ const Tabs = ({ color }) => {
     hash: cliamData?.hash,
   });
 
-  console.log(data, "lastttttttttttttttt");
-
   function SampleNextArrow(props) {
     const { className, onClick } = props;
     return (
@@ -185,12 +183,27 @@ const Tabs = ({ color }) => {
           nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
           prevArrow: <SamplePrevArrow />,
         };
+  const getCurrent = async () => {
+    const res = await fetch("http://165.227.44.103:2000/api/allLottaries");
+    const data = await res.json();
+    return data;
+  };
+  const [allLoterries, setAllLoterries] = useState(null);
+  useEffect(() => {
+    getCurrent()
+      .then((data) => {
+        setAllLoterries(data?.lottariesData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     slider.current.slickNext();
   }, [address]);
 
-  console.log(userTickets, "usertickets");
+  console.log(allLoterries, "allLoterriesallLoterriesallLoterries");
 
   return (
     <>
@@ -314,36 +327,7 @@ const Tabs = ({ color }) => {
         <div className={openTab === 2 ? "block" : "hidden"} id="link2">
           <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
             <Slider {...settings}>
-              {[
-                {
-                  _id: "62c99b03805d95f64cc3523e",
-                  lottaryId: 0,
-                  __v: 0,
-                  eachGroupWin: [
-                    10000000000000, 15000000000000, 25000000000000,
-                    50000000000000, 100000000000000, 200000000000000,
-                  ],
-                  endTime: 1657379436,
-                  paymentMethod: 0,
-                  players: ["0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279"],
-                  totalCollectedValue: 500000000000000,
-                  winCode: "808687",
-                },
-                {
-                  _id: "62caad7d805d95f64cc38c3e",
-                  lottaryId: 1,
-                  __v: 0,
-                  eachGroupWin: [
-                    298340955.72, 447511433.58, 745852389.3, 1491704778.6,
-                    2983409557.2, 5966819114.4,
-                  ],
-                  endTime: 1657449754,
-                  paymentMethod: 0,
-                  players: ["0x6e2fa26ec7AD0EE7143678035dDF5ec951c36279"],
-                  totalCollectedValue: 14917047786,
-                  winCode: "301181",
-                },
-              ]?.map((lottary) => (
+              {allLoterries?.map((lottary) => (
                 <div className="card-border max-w-[856px]  rounded-[51px]    mx-auto  ">
                   <div className="bg-white  rounded-[51px] z-50">
                     <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
@@ -427,7 +411,7 @@ const Tabs = ({ color }) => {
                                     </div>
                                     <div>
                                       <p className="ml-3 custom-color  text-[32px]">
-                                        {lottary?.paymentMethod == 0
+                                        {parseInt(lottary?.paymentMethod) === 0
                                           ? "~BNB " +
                                             ethers.utils.formatEther(
                                               lottary?.totalCollectedValue
@@ -451,7 +435,7 @@ const Tabs = ({ color }) => {
                                         Match First {index + 1}
                                       </h5>
                                       <p className=" mt-[16px] custom-color  text-[18px] leading-[21px] font-medium">
-                                        {lottary?.paymentMethod == 0
+                                        {parseInt(lottary?.paymentMethod) === 0
                                           ? "~BNB " +
                                             ethers.utils.formatEther(
                                               group && Math.round(group - 1)
