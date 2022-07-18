@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import Circle from "../Circle";
 import "./count.css";
@@ -6,6 +6,7 @@ import { useContractRead } from "wagmi";
 import { contractABI, contractAddress } from "../../contract";
 
 const CountDown = () => {
+  const [completed, setCompleted] = useState(false);
   const {
     data: ID,
     isError: IDerror,
@@ -27,9 +28,11 @@ const CountDown = () => {
   const timestamp = rawstatus && rawstatus[3];
   const valid = (status == 0 || status == 1) && parseInt(timestamp + "000");
 
+  console.log(valid - Date.now(), "valid");
+
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      // Render a completed state
+      // setCompleted(true);
       return null;
     } else {
       // Render a countdown
@@ -97,7 +100,9 @@ const CountDown = () => {
       <section className="container mx-auto ">
         <div className="flex flex-col-reverse items-center justify-center md:flex-col">
           <Countdown date={valid} renderer={renderer} />
-          <p className="font-mono text-[50px] mt-[23.49px]"> until the draw</p>
+          {valid - Date.now() < 0 ? null : (
+            <p className="font-mono text-[50px] mt-[23.49px]">until the draw</p>
+          )}
         </div>
       </section>
     );

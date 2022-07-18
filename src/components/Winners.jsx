@@ -75,7 +75,7 @@ const Winners = () => {
   return (
     <section id="win" className="container mx-auto ">
       <h2 className="mt-[145px] m-6 text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
-        The names of the winners
+        The names of the WINNERS
       </h2>
       <div className="relative  mt-[50px]">
         <div className="absolute left-0 ">

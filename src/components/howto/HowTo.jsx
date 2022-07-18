@@ -5,13 +5,13 @@ import "./howto.css";
 const HowTo = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="container pt-[100px] pb-[180px] mx-auto element ">
+    <div className="container pt-[100px] pb-[150px] mx-auto element ">
       <div className="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="font-serif text-[40px] leading-[48px] font-extrabold  text-accent sm:text-4xl">
           How to participate in the Lottery
         </h2>
         <p className=" mx-auto mt-[19.58px] text-[30px] text-[#828991] leading-[35.55px] font-normal ">
-          The lottery mechanism is based on a smart contract.
+          The lottery mechanism is based on a smart contract
         </p>
         <div className="mt-[135.42px] ">
           <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 xl:grid-cols-3">

@@ -11,6 +11,7 @@ import { useContractRead } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 
 import Line from "../asset/Line.svg";
+import { DateTime } from "luxon";
 const GetNow = () => {
   const { theme } = useContext(ThemeContext);
   const getCurrent = async () => {
@@ -68,12 +69,12 @@ const GetNow = () => {
         </h2>
 
         <div className="relative mx-auto flex items-center cut justify-center mt-[181px]">
-          <div className="z-50 flex-col w-4/5 xl:w-1/2 first-line:flex">
+          <div className="flex-col w-4/5 z-3 xl:w-1/2 first-line:flex">
             <div
               className={
                 theme === "dark"
-                  ? "card-dark rounded-[51px] z-50"
-                  : "card rounded-[51px]  z-50"
+                  ? "card-dark rounded-[51px] z-3"
+                  : "card rounded-[51px]  z-3"
               }
             >
               <div className=" rounded-t-[50px] bg-title  ">
@@ -81,7 +82,9 @@ const GetNow = () => {
                   <p className="text-[22px] ml-[36px] text-card">Next Draw</p>
                   <p className=" mr-[43px]  text-[22px] text-card">
                     {/* May 22, 2022, 03:30 PM */}
-                    {date?.toString().substring(0, 21)}
+                    {DateTime.fromJSDate(date)
+                      .toFormat("fffMMM dd, yyyy, hh:mm a")
+                      .substring(30)}
                   </p>
                 </div>
               </div>
@@ -125,16 +128,18 @@ const GetNow = () => {
                                 </h5>
                                 <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
                                   {rawstatus && rawstatus[5] == 0
-                                    ? "~BNB " + ethers.utils.formatEther(item)
-                                    : "~$ " + item}
+                                    ? "~BNB " + ethers.utils.formatEther(1)
+                                    : "~$ " + 1}
                                 </p>
                               </div>
                             ))}
                           </div>
                         </Disclosure.Panel>
                       </Transition>
-                      <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-gray-200  ">
-                        <span className="text-[22px] text-card">Details</span>
+                      <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-[#330e46]  ">
+                        <span className="font-sans font-normal   leading-[26.07px] text-[22px] text-card">
+                          Details
+                        </span>
 
                         <Down theme={theme} open={open} />
                       </Disclosure.Button>
@@ -147,16 +152,12 @@ const GetNow = () => {
 
             <div className="bg-shape hidden xl:block  rounded-b-[51px] absolute -bottom-[35px] left-[398px]   z-[-1]  w-[647.9px] h-[180.17px]   p-1"></div>
           </div>
-          <div className=" hidden xl:block   absolute -top-[89px]  left-[646px] ">
+          <div className=" hidden xl:block   absolute -top-[89px]  left-[646px] -z-10 ">
             {/* <div className="absolute  top-[304px] bg-primary z-[1]  mix-blend-normal  right-[0px]  w-[43px] h-[93.96px] rounded-bl-full rounded-tl-full "></div> */}
             <Poly theme={theme} />
           </div>
 
-          <img
-            src={dashed}
-            alt="about"
-            className=" absolute left-0 z-1 -top-[27px]"
-          />
+          <img src={dashed} alt="about" className="absolute left-0 -z-10" />
         </div>
       </section>
     );

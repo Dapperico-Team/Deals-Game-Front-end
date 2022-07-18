@@ -136,7 +136,7 @@ export default function Modal({ open, setOpen }) {
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-[9999999999999999999999999999] overflow-y-auto"
+          className="fixed inset-0 overflow-y-auto z-4"
           onClose={setOpen}
         >
           <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -172,7 +172,7 @@ export default function Modal({ open, setOpen }) {
                 style={{ zIndex: "99999999999" }}
                 className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
               >
-                <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                <div className="absolute top-0 right-0 hidden pt-[30px] pr-6 sm:block">
                   <img
                     onClick={() => setOpen(false)}
                     src={Close}
@@ -187,7 +187,7 @@ export default function Modal({ open, setOpen }) {
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title
                       as="h3"
-                      className="font-serif text-[32px] leading-[38.4px] font-medium  text-[#131111]"
+                      className="font-serif text-[32px] leading-[38.4px] font-extrabold  text-[#131111]"
                     >
                       Buy Tickets
                     </Dialog.Title>
@@ -212,7 +212,7 @@ export default function Modal({ open, setOpen }) {
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-[999999999999999999999] overflow-y-auto"
+          className="fixed inset-0 overflow-y-auto z-4"
           onClose={setOpen}
         >
           <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -248,7 +248,7 @@ export default function Modal({ open, setOpen }) {
                 style={{ zIndex: "99999999999" }}
                 className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
               >
-                <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                <div className="absolute top-0 right-0 hidden pt-[30px] pr-6 sm:block">
                   <img
                     onClick={() => setOpen(false)}
                     src={Close}
@@ -263,7 +263,7 @@ export default function Modal({ open, setOpen }) {
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title
                       as="h3"
-                      className="font-serif text-[32px] leading-[38.4px] font-medium  text-[#131111]"
+                      className="font-serif text-[32px] leading-[38.4px] font-extrabold  text-[#131111]"
                     >
                       Buy Tickets
                     </Dialog.Title>
@@ -293,6 +293,8 @@ export default function Modal({ open, setOpen }) {
                     <div className="form-inline" key={index}>
                       <input
                         min={1}
+                        step="1"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                         type="number"
                         className="mb-2 buy-input"
                         maxLength={6}

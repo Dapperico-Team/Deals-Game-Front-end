@@ -31,11 +31,15 @@ const Hero = () => {
         >
           <source src={Furtune} type="video/webm" />
         </video>
-        <img
-          src={Arrow}
-          className="absolute animate-bounce   -bottom-[30px] left-[45%]  "
-          alt=""
-        />
+        <a href="#get">
+          <img
+            src={Arrow}
+            width="60.83px"
+            height="60.83px"
+            className="absolute    -bottom-[40px] left-[50%]  "
+            alt=""
+          />
+        </a>
       </div>
     </section>
   );

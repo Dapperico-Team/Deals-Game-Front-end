@@ -15,6 +15,7 @@ import { ethers } from "ethers";
 import { Disclosure, Transition } from "@headlessui/react";
 import { useWaitForTransaction, useContractWrite, useAccount } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
+import { DateTime } from "luxon";
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -275,9 +276,9 @@ const Tabs = ({ color }) => {
                       <div>
                         <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                           Drawn{" "}
-                          {new Date(lottary[0].EndTime * 1000)
-                            .toString()
-                            .substring(0, 21)}
+                          {DateTime.fromJSDate(new Date(lottary.endTime * 1000))
+                            .toFormat("fffMMM dd, yyyy, hh:mm a")
+                            .substring(30)}
                         </h4>
                       </div>
                     </div>
@@ -341,9 +342,9 @@ const Tabs = ({ color }) => {
                       <div>
                         <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
                           Drawn{" "}
-                          {new Date(lottary.endTime * 1000)
-                            .toString()
-                            .substring(0, 21)}
+                          {DateTime.fromJSDate(new Date(lottary.endTime * 1000))
+                            .toFormat("fffMMM dd, yyyy, hh:mm a")
+                            .substring(30)}
                         </h4>
                       </div>
                       <h3 className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">

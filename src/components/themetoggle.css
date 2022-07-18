@@ -20,7 +20,7 @@
 }
 .animate-sun {
   opacity: 1;
-  transform: translateY(0%) rotateZ(100deg);
+  transform: translateY(0%) rotateZ(180deg);
 }
 .animate-moon {
   opacity: 1;
