@@ -130,7 +130,7 @@ export default function Modal({ open, setOpen }) {
     newFormValues.splice(i, 1);
     setFormValues(newFormValues);
   };
-  console.log(parseInt(paymentMethod) === 1, "paymentMethod");
+
   if (parseInt(status) !== 1) {
     return (
       <Transition.Root show={open} as={Fragment}>
@@ -139,7 +139,7 @@ export default function Modal({ open, setOpen }) {
           className="fixed inset-0 overflow-y-auto z-4"
           onClose={setOpen}
         >
-          <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-end justify-center min-h-screen px-4 pt-4 text-center sm:block sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -170,7 +170,7 @@ export default function Modal({ open, setOpen }) {
             >
               <div
                 style={{ zIndex: "99999999999" }}
-                className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+                className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-[70px] shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-10"
               >
                 <div className="absolute top-0 right-0 hidden pt-[30px] pr-6 sm:block">
                   <img
@@ -215,7 +215,7 @@ export default function Modal({ open, setOpen }) {
           className="fixed inset-0 overflow-y-auto z-4"
           onClose={setOpen}
         >
-          <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-end justify-center min-h-screen px-4 pt-4 text-center pb-96 sm:block sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -246,9 +246,9 @@ export default function Modal({ open, setOpen }) {
             >
               <div
                 style={{ zIndex: "99999999999" }}
-                className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+                className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-[70px] shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-10"
               >
-                <div className="absolute top-0 right-0 hidden pt-[30px] pr-6 sm:block">
+                <div className="absolute top-0 right-0 hidden pt-[45px] pr-9 sm:block">
                   <img
                     onClick={() => setOpen(false)}
                     src={Close}

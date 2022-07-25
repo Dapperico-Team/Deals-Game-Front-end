@@ -27,8 +27,10 @@ const CountDown = () => {
   const status = rawstatus && rawstatus[4];
   const timestamp = rawstatus && rawstatus[3];
   const valid = (status == 0 || status == 1) && parseInt(timestamp + "000");
+  console.log({ valid });
 
-  console.log(valid - Date.now(), "valid");
+  console.log(parseInt(status) === 1, "counterstatauss");
+  console.log(timestamp, "timestamp");
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -95,7 +97,7 @@ const CountDown = () => {
       );
     }
   };
-  if (status == 0 || status == 1) {
+  if (parseInt(status) === 0 || parseInt(status) === 1) {
     return (
       <section className="container mx-auto ">
         <div className="flex flex-col-reverse items-center justify-center md:flex-col">

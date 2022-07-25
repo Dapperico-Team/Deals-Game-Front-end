@@ -53,6 +53,21 @@
   background-clip: text;
   text-fill-color: transparent;
 }
+.custom-color-2 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.33px;
+  background: radial-gradient(
+      160.51% 123.88% at -5.25% 0%,
+      #9e0091 0%,
+      #1d0e34 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
 
 @media (max-width: 768px) {
   .card-border {
@@ -63,4 +78,28 @@
       #1d0e34 100%
     );
   }
+}
+.swiper-button-next {
+  background-image: url(../asset/ArrowRight.svg);
+  background-repeat: no-repeat;
+  /* background-size: 100% auto; */
+  background-position: center;
+  width: 53.33px !important;
+  height: 53.33px !important;
+}
+.swiper-button-prev {
+  background-image: url(../asset/ArrowLeft.svg);
+  background-repeat: no-repeat;
+  /* background-size: 100% auto; */
+  background-position: center;
+  border-radius: 999999999999999px;
+  width: 53.33px !important;
+  height: 53.33px !important;
+}
+
+.swiper-button-next::after {
+  display: none;
+}
+.swiper-button-prev::after {
+  display: none;
 }

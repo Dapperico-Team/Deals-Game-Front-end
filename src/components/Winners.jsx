@@ -34,8 +34,6 @@ const Winners = () => {
 
   var merged = allUsers && [].concat.apply([], Object.values(allUsers));
 
-  console.log(merged, "merged");
-
   const settings = {
     // className: "center",
     centerMode: true,
@@ -91,7 +89,7 @@ const Winners = () => {
             >
               <div className="  flex-col md:flex-row   flex  items-center justify-start gap-4 pt-[25.98px] pb-[27.71px] md:pl-[37.7px] md:pr-[30px] whitespace-nowrap">
                 <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
-                  round
+                  Round
                 </h3>
                 <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
                   {user?.tickets[0]?.lottaryId}

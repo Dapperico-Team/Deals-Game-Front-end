@@ -136,7 +136,7 @@ const GetNow = () => {
                           </div>
                         </Disclosure.Panel>
                       </Transition>
-                      <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center hover:bg-[#330e46]  ">
+                      <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center  dark:hover:bg-gray-300    hover:bg-[#330e46]  ">
                         <span className="font-sans font-normal   leading-[26.07px] text-[22px] text-card">
                           Details
                         </span>
