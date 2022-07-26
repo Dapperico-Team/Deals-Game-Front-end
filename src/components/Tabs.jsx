@@ -208,6 +208,9 @@ const Tabs = ({ color }) => {
       });
   }, []);
 
+  console.log(allLoterries, "alllllllllllll");
+  console.log("8" - "6");
+
   return (
     <>
       <div className=" mt-[34px] text-center">
@@ -437,12 +440,12 @@ const Tabs = ({ color }) => {
                                       <span className="  custom-color text-[18px] leading-[21px] font-medium"></span>
                                     </div>
                                   </div>
-                                  <div className="flex flex-wrap gap-24 p-6">
+                                  <div className="flex flex-wrap gap-[41px] ml-[24px] my-[35px]">
                                     {lottary &&
                                       lottary?.eachGroupWin?.map(
                                         (group, index) => (
-                                          <div className="flex flex-col justify-start">
-                                            <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                                          <div className="flex flex-col items-start justify-start">
+                                            <h5 className="text-[#A2A2A2] text-[16px] leading-[19.2px] font-serif">
                                               Match First {index + 1}
                                             </h5>
                                             <p className=" mt-[16px] custom-color-2 font-sans  ">
@@ -461,17 +464,41 @@ const Tabs = ({ color }) => {
                                           </div>
                                         )
                                       )}
-                                  </div>
-                                  <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
-                                    <div>
+
+                                    <div className="flex flex-col flex-wrap items-start justify-start ">
                                       <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
                                         Burn
                                       </h5>
-                                      <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                        23,765 DEALS
-                                      </p>
-                                      <p className="mt-[8px] text-card text-[14px] leading-[17px] font-normal">
-                                        ~$1,430
+                                      <p className=" mt-[16px] custom-color-2 text-card text-[18px] leading-[21px] font-medium">
+                                        {parseInt(lottary?.paymentMethod) === 0
+                                          ? `~BNB ${
+                                              ethers.utils.formatEther(
+                                                lottary.totalCollectedValue
+                                              ) -
+                                              ethers.utils.formatEther(
+                                                lottary.eachGroupWin
+                                                  .reduce(
+                                                    (sum, b) =>
+                                                      Number(sum) + Number(b),
+                                                    0
+                                                  )
+                                                  .toString()
+                                              )
+                                            }`
+                                          : `~BUSD ${
+                                              ethers.utils.formatEther(
+                                                lottary.totalCollectedValue
+                                              ) -
+                                              ethers.utils.formatEther(
+                                                lottary.eachGroupWin
+                                                  .reduce(
+                                                    (sum, b) =>
+                                                      Number(sum) + Number(b),
+                                                    0
+                                                  )
+                                                  .toString()
+                                              )
+                                            }`}
                                       </p>
                                     </div>
                                   </div>
