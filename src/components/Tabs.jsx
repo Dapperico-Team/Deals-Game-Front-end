@@ -208,9 +208,6 @@ const Tabs = ({ color }) => {
       });
   }, []);
 
-  console.log(allLoterries, "alllllllllllll");
-  console.log("8" - "6");
-
   return (
     <>
       <div className=" mt-[34px] text-center">
@@ -509,13 +506,15 @@ const Tabs = ({ color }) => {
                                 onClick={() => {
                                   setIsClosed(!isClosed);
                                 }}
-                                className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300    hover:bg-[#330e46]  "
+                                className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   "
                               >
-                                <span className="text-[22px] text-card">
-                                  Details
-                                </span>
+                                <div className="flex items-end">
+                                  <span className="text-[22px] text-primary -mb-1">
+                                    Details
+                                  </span>
 
-                                <Down open={isClosed} />
+                                  <Down open={isClosed} />
+                                </div>
                               </button>
                             </div>
                           </div>

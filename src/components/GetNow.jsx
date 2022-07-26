@@ -58,8 +58,11 @@ const GetNow = () => {
   const rawstatus = data?.toString()?.split(",");
   const status = rawstatus && rawstatus[4];
   const timestamp = rawstatus && rawstatus[3];
+  const PaymentMethod = rawstatus && rawstatus[5];
 
   const date = new Date(timestamp * 1000);
+
+  console.log(rawstatus, "current");
 
   if (status == 0 || status == 1) {
     return (
@@ -104,7 +107,13 @@ const GetNow = () => {
 
               <div className="mb-3 rounded-b-xl">
                 <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
-                  <Buy />
+                  <Buy
+                    style={{
+                      height: "75px",
+                      width: "304px",
+                      padding: "16px, 32px, 16px, 32px",
+                    }}
+                  />
                 </div>
               </div>
               <div className=" z-6  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
@@ -121,18 +130,55 @@ const GetNow = () => {
                       >
                         <Disclosure.Panel className="px-8 pt-4 pb-2 text-sm text-gray-500 bg-transparent">
                           <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
-                            {current?.eachGroupWins?.map((item, index) => (
-                              <div>
-                                <h5 className="text-[#D1D1D1] text-[18px] leading-[21px] font-normal">
+                            {current?.eachGroupWins?.map((group, index) => (
+                              <div className="flex flex-col items-start justify-start">
+                                <h5 className="text-[#D1D1D1] text-[18px] leading-[21.33px] font-sans">
                                   Match First {index + 1}
                                 </h5>
-                                <p className=" mt-[16px] text-card text-[18px] leading-[21px] font-medium">
-                                  {rawstatus && rawstatus[5] == 0
-                                    ? "~BNB " + ethers.utils.formatEther(1)
-                                    : "~$ " + 1}
+                                <p className=" mt-[16px]  text-card font-sans  ">
+                                  {parseInt(current?.paymentMethod) === 0
+                                    ? "~BNB " + ethers.utils.formatEther(group)
+                                    : "~BUSD " +
+                                      ethers.utils.formatEther(group)}
                                 </p>
                               </div>
                             ))}
+                            <div className="flex flex-col flex-wrap items-start justify-start ">
+                              <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
+                                Burn
+                              </h5>
+                              <p className=" mt-[16px]  text-card leading-[21px]">
+                                {/* {current &&
+                                PaymentMethod &&
+                                parseInt(PaymentMethod) === 0
+                                  ? `~BNB ${
+                                      ethers.utils.formatEther(
+                                        current?.totalCollected
+                                      ) -
+                                      ethers.utils.formatEther(
+                                        current?.eachGroupWins
+                                          .reduce(
+                                            (sum, b) => Number(sum) + Number(b),
+                                            0
+                                          )
+                                          ?.toString()
+                                      )
+                                    }`
+                                  : `~BUSD ${
+                                      ethers.utils.formatEther(
+                                        current?.totalCollected
+                                      ) -
+                                      ethers.utils.formatEther(
+                                        current?.eachGroupWins
+                                          .reduce(
+                                            (sum, b) => Number(sum) + Number(b),
+                                            0
+                                          )
+                                          ?.toString()
+                                      )
+                                    }`} */}
+                              </p>
+                            </div>
                           </div>
                         </Disclosure.Panel>
                       </Transition>

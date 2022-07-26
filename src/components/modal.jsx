@@ -112,7 +112,7 @@ export default function Modal({ open, setOpen }) {
         return;
       } else {
         setcountvalues((prev) => prev + 1);
-        newFormValues[i][e.target.name] = e.target.value;
+        newFormValues[i][e.target.name] = Math.round(e.target.value) || "";
 
         setFormValues(newFormValues);
       }

@@ -73,7 +73,7 @@ const Winners = () => {
   return (
     <section id="win" className="container mx-auto ">
       <h2 className="mt-[145px] m-6 text-center text-[40px] leading-[48px]   font-serif font-extrabold text-accent  ">
-        The names of the WINNERS
+        WINNERS
       </h2>
       <div className="relative  mt-[50px]">
         <div className="absolute left-0 ">
@@ -91,11 +91,11 @@ const Winners = () => {
                 <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                   Round
                 </h3>
-                <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
+                <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] font-serif text-[24px] leading-[29px] text-[#9E0091]  font-normal  ">
                   {user?.tickets[0]?.lottaryId}
                 </span>
                 <h3 className="font-serif text-[18px] font-extrabold leading-[29px] text-[#2C2C2C]">
-                  match first 1
+                  match first {user?.tickets[0]?.matchGroup}
                 </h3>
               </div>
               <img src={Line} alt="dashedLine" className="w-full"></img>
