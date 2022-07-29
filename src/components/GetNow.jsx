@@ -185,7 +185,9 @@ const GetNow = () => {
             </div>
             {/* <div className="absolute  top-[304px] bg-primary rounded-full  -left-[40px] z-[9999999] w-[86px] h-[93.96px]"></div> */}
 
-            <div className="bg-shape hidden xl:block  rounded-b-[51px] absolute -bottom-[35px] left-[398px]   z-[-1]  w-[647.9px] h-[180.17px]   p-1"></div>
+            {!isClosed && (
+              <div className="bg-shape hidden xl:block  rounded-b-[51px] absolute -bottom-[35px] left-[398px]   z-[-1]  w-[647.9px] h-[180.17px]   p-1"></div>
+            )}
           </div>
           <div className=" hidden xl:block   absolute -top-[89px]  left-[646px] -z-10 ">
             {/* <div className="absolute  top-[304px] bg-primary z-[1]  mix-blend-normal  right-[0px]  w-[43px] h-[93.96px] rounded-bl-full rounded-tl-full "></div> */}

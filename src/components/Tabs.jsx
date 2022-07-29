@@ -215,8 +215,7 @@ const Tabs = ({ color }) => {
                 <SwiperSlide key={Date.now()}>
                   <div className="card-border w-[834px]  rounded-[51px]    mx-auto  ">
                     <div className="bg-white   rounded-[51px] z-50">
-                      <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap"></div>
-                      <div className="flex flex-col items-start  ml-[90px]">
+                      <div className="flex flex-col items-center pt-[100px] ">
                         <div>
                           <h3 className="font-serif text-[30px] text-center  leading-[24px] text-[#2C2C2C]">
                             Please Connect Your Wallet{" "}
@@ -224,11 +223,11 @@ const Tabs = ({ color }) => {
                         </div>
                       </div>
                       <div className="mb-3 rounded-b-xl">
-                        <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+                        <div className="flex flex-col items-center text-center pb-[100px]  pt-[60px] ">
                           <Connect />
                         </div>
                       </div>
-                      <button className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   ">
+                      <button className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center  pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   ">
                         <div className="flex items-end">
                           <span className=" font-serif text-[18px] text-primary -mb-1">
                             show data for lottery V4
@@ -240,24 +239,22 @@ const Tabs = ({ color }) => {
                 </SwiperSlide>
               ) : address && Object.values(result).length <= 0 ? (
                 <SwiperSlide key={Date.now()}>
-                  <div className="card-border w-[834px]   rounded-[51px]    mx-auto  ">
-                    <div className="bg-white  rounded-[51px] z-50">
-                      <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap"></div>
-                      <div className="flex flex-col items-start  ml-[90px]">
+                  <div className="card-border w-[834px]  rounded-[51px]    mx-auto  ">
+                    <div className="bg-white   rounded-[51px] z-50">
+                      <div className="flex flex-col items-center pt-[100px] ">
                         <div>
-                          {" "}
                           <h3 className="font-serif text-[30px] text-center  leading-[24px] text-[#2C2C2C]">
                             No lottery history found
                           </h3>{" "}
                         </div>
                       </div>
                       <div className="mb-3 rounded-b-xl">
-                        <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+                        <div className="flex flex-col items-center text-center pb-[70px]  pt-[60px] ">
                           <Buy />
                         </div>
                       </div>
-                      <button className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   ">
-                        <div className="flex items-end">
+                      <button className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center  pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   ">
+                        <div className="flex items-center justify-center">
                           <span className=" font-serif text-[18px] text-primary -mb-1">
                             show data for lottery V4
                           </span>
@@ -358,7 +355,7 @@ const Tabs = ({ color }) => {
                     <SwiperSlide key={lottary._id}>
                       <div className="card-border max-w-[856px]  rounded-[51px]    mx-auto  ">
                         <div className="bg-white  rounded-[51px] z-50">
-                          <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
+                          <div className="flex flex-col items-center justify-center gap-4 pt-[45px] pb-[40px] pl-[37.7px] pr-[30px] whitespace-nowrap">
                             <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
                               Round{" "}
                               <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
@@ -380,7 +377,7 @@ const Tabs = ({ color }) => {
                               Wining Numbers
                             </h3>
                           </div>
-                          <div className="flex flex-row items-center justify-center gap-4 mx-auto mb-6 text-center max-w-690">
+                          <div className="flex flex-row items-center justify-center gap-4 mx-auto mb-[35px] text-center max-w-690">
                             <div className="relative flex items-center justify-center ">
                               <img src={one} alt="" className="relative" />
                               <div className="absolute top-2 left-[13px]  md:top-6 md:left-9 font-serif text-[#2C2C2C] text-[20px]  md:text-[30px]">
