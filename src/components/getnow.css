@@ -4,8 +4,7 @@
     #d410cc 0%,
     #1d0e34 100%
   );
-  -webkit-mask: radial-gradient(52px, #0000 98%, #000) 10000% 10000%/99.5%
-    89.17%;
+  -webkit-mask: radial-gradient(44px, #0000 97%, #000) 359px -379px/713px 480px;
 }
 
 /* .card:before {
@@ -16,8 +15,7 @@
 
 .card-dark {
   background-color: #fff;
-  -webkit-mask: radial-gradient(52px, #0000 98%, #000) 10000% 10000%/99.5%
-    89.17%;
+  -webkit-mask: radial-gradient(44px, #0000 97%, #000) 359px -379px/713px 480px;
 }
 
 @media (max-width: 768px) {

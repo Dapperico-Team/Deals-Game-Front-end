@@ -1,8 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import Right from "../asset/ArrowRight.svg";
-import Left from "../asset/ArrowLeft.svg";
-import Buy from "./button/Buy";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+
 import Down from "../asset/ArrowDown";
 import one from "../asset/1.png";
 import two from "../asset/2.png";
@@ -10,16 +7,21 @@ import three from "../asset/3.png";
 import four from "../asset/4.png";
 import five from "../asset/5.png";
 import six from "../asset/6.png";
-import "./tabs.css";
+
 import { ethers } from "ethers";
-import { Disclosure, Transition } from "@headlessui/react";
+
 import { useWaitForTransaction, useContractWrite, useAccount } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
 import { DateTime } from "luxon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
+import Connect from "../components/button/Connect";
+import Buy from "../components/button/Buy";
+import AnimateHeight from "react-animate-height";
+
 import "swiper/css";
 import "swiper/css/navigation";
+import "./tabs.css";
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -39,20 +41,9 @@ const Tabs = ({ color }) => {
   const [openTab, setOpenTab] = React.useState(2);
   const [userTickets, setUserTickets] = useState([]);
 
-  const slider = useRef(null);
-  const [allLottaries, setAllLottaries] = useState([]);
-
-  const [cliamResult, setCliamResult] = useState(null);
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
 
   const [isClosed, setIsClosed] = useState(false);
-
-  // const { data, isError, isLoading, error } = useContractRead({
-  //   addressOrName: contractAddress,
-  //   contractInterface: contractABI,
-  //   functionName: "Lotteries",
-  //   args: ID?.toString() - 1,
-  // });
 
   const postClaim = async (lotteryID) => {
     const settings = {
@@ -106,28 +97,6 @@ const Tabs = ({ color }) => {
     hash: cliamData?.hash,
   });
 
-  function SampleNextArrow(props) {
-    const { className, onClick } = props;
-    return (
-      <div className={className} onClick={onClick}>
-        <img src={Right} alt="arrow_left" />
-      </div>
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, onClick } = props;
-    return (
-      <div
-        className={className}
-        // style={{ display: "flex", margin: 0, padding: 0 }}
-        onClick={onClick}
-      >
-        <img src={Left} alt="arrow_right" />
-      </div>
-    );
-  }
-
   const getUserTickets = async () => {
     const settings = {
       method: "POST",
@@ -162,6 +131,8 @@ const Tabs = ({ color }) => {
       });
   }, [address]);
 
+  console.log(userTickets, "ianashaaaaaaaaaaa");
+
   let result =
     userTickets.length > 0 &&
     userTickets?.reduce(function (r, a) {
@@ -170,26 +141,6 @@ const Tabs = ({ color }) => {
       return r;
     }, Object.create(null));
 
-  const settings =
-    width < 768
-      ? {
-          infinite: false,
-          arrows: false,
-          dots: false,
-          speed: 500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
-      : {
-          infinite: false,
-          arrows: true,
-          dots: false,
-          speed: 500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          nextArrow: <SampleNextArrow style={{ backGround: "green" }} />,
-          prevArrow: <SamplePrevArrow />,
-        };
   const getCurrent = async () => {
     const res = await fetch("http://165.227.44.103:2000/api/allLottaries");
     const data = await res.json();
@@ -207,6 +158,8 @@ const Tabs = ({ color }) => {
         console.log(err);
       });
   }, []);
+
+  console.log(Object.values(result), "tabdil");
 
   return (
     <>
@@ -255,72 +208,144 @@ const Tabs = ({ color }) => {
           </ul>
         </div>
 
-        <div className={openTab === 1 ? "inline-block " : "hidden"} id="link1">
+        <div className={openTab === 1 ? "block " : "hidden"} id="link1">
           <div className="mt-[32px] text-center lg:inline-block   max-w-[1036.69px]   ">
             <Swiper modules={[Navigation]} navigation>
-              {Object.values(result)?.map((lottary, index) => (
+              {!address ? (
                 <SwiperSlide key={Date.now()}>
-                  <div className="card-border max-w-[856px]  rounded-[51px]    mx-auto  ">
-                    <div className="bg-white  rounded-[51px] z-50">
-                      <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
-                        <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
-                          Round{" "}
-                          <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
-                            {lottary[0]?.lottaryId}
-                          </span>
-                        </h3>
-                        <div>
-                          <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
-                            Drawn{" "}
-                            {DateTime.fromJSDate(
-                              new Date(lottary.endTime * 1000)
-                            )
-                              .toFormat("fffMMM dd, yyyy, hh:mm a")
-                              .substring(30)}
-                          </h4>
-                        </div>
-                      </div>
+                  <div className="card-border w-[834px]  rounded-[51px]    mx-auto  ">
+                    <div className="bg-white   rounded-[51px] z-50">
+                      <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap"></div>
                       <div className="flex flex-col items-start  ml-[90px]">
                         <div>
-                          {" "}
-                          <h3 className="font-serif text-[20px]  leading-[24px] text-[#2C2C2C]">
-                            number of Tickets: <span>{lottary?.length}</span>
-                          </h3>{" "}
-                        </div>
-                        <div>
-                          {" "}
-                          <h3 className="font-serif text-[20px]  leading-[24px] mt-[32px] text-[#2C2C2C]">
-                            Rewarded:{" "}
-                            <span>
-                              {" "}
-                              {lottary.reduce((sum, b) => sum + b.winAmount, 0)}
-                            </span>
+                          <h3 className="font-serif text-[30px] text-center  leading-[24px] text-[#2C2C2C]">
+                            Please Connect Your Wallet{" "}
                           </h3>{" "}
                         </div>
                       </div>
                       <div className="mb-3 rounded-b-xl">
                         <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
-                          {lottary.reduce((sum, b) => sum + b.winAmount, 0) &&
-                          lottary[0]?.isPaid === 1 ? (
-                            <button
-                              onClick={() => {
-                                postClaim(lottary[0]?.lottaryId);
-                              }}
-                              className="font-sans text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
-                            >
-                              Claim
-                            </button>
-                          ) : (
-                            <button className="font-sans cursor-not-allowed text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gray-400">
-                              Claim
-                            </button>
-                          )}
+                          <Connect />
                         </div>
                       </div>
+                      <button className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   ">
+                        <div className="flex items-end">
+                          <span className=" font-serif text-[18px] text-primary -mb-1">
+                            show data for lottery V4
+                          </span>
+                        </div>
+                      </button>
                     </div>
                   </div>
                 </SwiperSlide>
-              ))}
+              ) : address && Object.values(result).length <= 0 ? (
+                <SwiperSlide key={Date.now()}>
+                  <div className="card-border w-[834px]   rounded-[51px]    mx-auto  ">
+                    <div className="bg-white  rounded-[51px] z-50">
+                      <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap"></div>
+                      <div className="flex flex-col items-start  ml-[90px]">
+                        <div>
+                          {" "}
+                          <h3 className="font-serif text-[30px] text-center  leading-[24px] text-[#2C2C2C]">
+                            No lottery history found
+                          </h3>{" "}
+                        </div>
+                      </div>
+                      <div className="mb-3 rounded-b-xl">
+                        <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+                          <Buy />
+                        </div>
+                      </div>
+                      <button className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   ">
+                        <div className="flex items-end">
+                          <span className=" font-serif text-[18px] text-primary -mb-1">
+                            show data for lottery V4
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ) : (
+                Object.values(result)?.map((lottary, index) => (
+                  <SwiperSlide key={Date.now()}>
+                    <div className="card-border max-w-[856px]  rounded-[51px]    mx-auto  ">
+                      <div className="bg-white  rounded-[51px] z-50">
+                        <div className="flex flex-col items-center justify-center gap-4 pt-[41px] pb-[23.17px] pl-[37.7px] pr-[30px] whitespace-nowrap">
+                          <h3 className="font-serif text-[24px] leading-[29px] text-[#2C2C2C]">
+                            Round{" "}
+                            <span className=" bg-[#9e00911a] border-[.8px] border-[#9e0091] rounded-[9.25842px] py-[6.15px] px-[7.65px] fonet-serif text-[24px] leading-[29px] text-[#9E0091]   ">
+                              {lottary[0]?.lottaryId}
+                            </span>
+                          </h3>
+                          <div>
+                            <h4 className="font-serif text-[16px] xl:text-[20px] font-normal leading-[29px] text-[#A2A2A2] ">
+                              Drawn{" "}
+                              {DateTime.fromJSDate(
+                                new Date(lottary[0]?.EndTime * 1000)
+                              )
+                                .toFormat("fffMMM dd, yyyy, hh:mm a")
+                                .substring(30)}
+                            </h4>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-start  ml-[90px]">
+                          <div>
+                            {" "}
+                            <h3 className="font-serif text-[20px]  leading-[24px] text-[#2C2C2C]">
+                              number of Tickets: <span>{lottary?.length}</span>
+                            </h3>{" "}
+                          </div>
+                          <div>
+                            {" "}
+                            <h3 className="font-serif text-[20px]  leading-[24px] mt-[32px] text-[#2C2C2C]">
+                              Rewarded:{" "}
+                              <span>
+                                {lottary[0]?.PM === 0
+                                  ? `~BNB ${ethers.utils.formatEther(
+                                      lottary
+                                        .reduce(
+                                          (sum, b) => sum + b.winAmount,
+                                          0
+                                        )
+                                        ?.toString()
+                                    )}`
+                                  : `~BUSD ${ethers.utils.formatEther(
+                                      lottary
+                                        .reduce(
+                                          (sum, b) => sum + b.winAmount,
+                                          0
+                                        )
+                                        ?.toString()
+                                    )}`}
+                              </span>
+                            </h3>{" "}
+                          </div>
+                        </div>
+                        <div className="mb-3 rounded-b-xl">
+                          <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
+                            {lottary.reduce((sum, b) => sum + b.winAmount, 0) &&
+                            lottary[0]?.isPaid === 1 ? (
+                              <button
+                                onClick={() => {
+                                  postClaim(lottary[0]?.lottaryId);
+                                }}
+                                className="font-sans text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gradient-to-b from-[#FFE68D]  to-[#D9A913]"
+                              >
+                                Claim
+                              </button>
+                            ) : (
+                              <button className="font-sans cursor-not-allowed text-body rounded-[10px] font-normal leading-[28px] text-[24px] py-[16px] px-[34px] w-[241px] h-[60px] whitespace-nowrap bg-gray-400">
+                                Claim
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))
+              )}
             </Swiper>
           </div>
         </div>
@@ -396,127 +421,117 @@ const Tabs = ({ color }) => {
                           </div>
 
                           <div className=" z-50  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
-                            <div>
-                              <div className="  border-t-2  border-[#e8e8e833] border-solid   "></div>
-                              <Transition
-                                show={isClosed}
-                                enter="transition  delay-100  duration-800 ease-out"
-                                enterFrom="transform scale-95 opacity-0"
-                                enterTo="transform  scale-100 opacity-100"
-                                leave="transition duration-500 ease-out"
-                                leaveFrom="transform scale-100 opacity-100"
-                                leaveTo="transform scale-95 opacity-0"
-                              >
-                                <div className="px-2 pt-4 pb-2 text-sm text-gray-500 bg-transparent ">
-                                  <div className="flex flex-wrap items-center justify-between p-6 md:flex-row ">
-                                    <div className="flex items-center">
-                                      <div className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
-                                        Prize Pot
-                                      </div>
-                                      <div>
-                                        <p className="ml-3 custom-color  text-[32px]">
-                                          {parseInt(lottary?.paymentMethod) ===
-                                          0
-                                            ? "~BNB " +
-                                              ethers.utils.formatEther(
-                                                lottary?.totalCollectedValue
-                                              )
-                                            : "~BUSD " +
-                                              ethers.utils.formatEther(
-                                                lottary?.totalCollectedValue
-                                              )}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div className="text-[#A2A2A2] flex items-center  text-[14px] leading-[21px] font-serif">
-                                      Total players this round:{" "}
-                                      <span className="custom-color-2 font-sans   ml-[5px]">
-                                        {" "}
-                                        {lottary?.players?.length}
-                                      </span>
-                                      <span className="  custom-color text-[18px] leading-[21px] font-medium"></span>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-wrap gap-[41px] ml-[24px] my-[35px]">
-                                    {lottary &&
-                                      lottary?.eachGroupWin?.map(
-                                        (group, index) => (
-                                          <div className="flex flex-col items-start justify-start">
-                                            <h5 className="text-[#A2A2A2] text-[16px] leading-[19.2px] font-serif">
-                                              Match First {index + 1}
-                                            </h5>
-                                            <p className=" mt-[16px] custom-color-2 font-sans  ">
-                                              {parseInt(
-                                                lottary?.paymentMethod
-                                              ) === 0
-                                                ? "~BNB " +
-                                                  ethers.utils.formatEther(
-                                                    group
-                                                  )
-                                                : "~BUSD " +
-                                                  ethers.utils.formatEther(
-                                                    group
-                                                  )}
-                                            </p>
-                                          </div>
-                                        )
-                                      )}
+                            <div className="  border-t-2  border-[#e8e8e833] border-solid   "></div>
 
-                                    <div className="flex flex-col flex-wrap items-start justify-start ">
-                                      <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
-                                        Burn
-                                      </h5>
-                                      <p className=" mt-[16px] custom-color-2 text-card text-[18px] leading-[21px] font-medium">
+                            <AnimateHeight
+                              id={"sliding_wrapper"}
+                              duration={400}
+                              height={isClosed ? "auto" : 0}
+                            >
+                              <div className="px-2 pt-4 pb-2 text-sm text-gray-500 transition-all duration-500 ease-in-out delay-150 bg-transparent ">
+                                <div className="flex flex-wrap items-center justify-between p-6 md:flex-row ">
+                                  <div className="flex items-center">
+                                    <div className="font-serif text-[24px]  leading-[29px] text-[#2C2C2C]">
+                                      Prize Pot
+                                    </div>
+                                    <div>
+                                      <p className="ml-3 custom-color  text-[32px]">
                                         {parseInt(lottary?.paymentMethod) === 0
-                                          ? `~BNB ${
-                                              ethers.utils.formatEther(
-                                                lottary.totalCollectedValue
-                                              ) -
-                                              ethers.utils.formatEther(
-                                                lottary.eachGroupWin
-                                                  .reduce(
-                                                    (sum, b) =>
-                                                      Number(sum) + Number(b),
-                                                    0
-                                                  )
-                                                  .toString()
-                                              )
-                                            }`
-                                          : `~BUSD ${
-                                              ethers.utils.formatEther(
-                                                lottary.totalCollectedValue
-                                              ) -
-                                              ethers.utils.formatEther(
-                                                lottary.eachGroupWin
-                                                  .reduce(
-                                                    (sum, b) =>
-                                                      Number(sum) + Number(b),
-                                                    0
-                                                  )
-                                                  .toString()
-                                              )
-                                            }`}
+                                          ? "~BNB " +
+                                            ethers.utils.formatEther(
+                                              lottary?.totalCollectedValue
+                                            )
+                                          : "~BUSD " +
+                                            ethers.utils.formatEther(
+                                              lottary?.totalCollectedValue
+                                            )}
                                       </p>
                                     </div>
                                   </div>
+                                  <div className="text-[#A2A2A2] flex items-center  text-[14px] leading-[21px] font-serif">
+                                    Total players this round:{" "}
+                                    <span className="custom-color-2 font-sans   ml-[5px]">
+                                      {" "}
+                                      {lottary?.players?.length}
+                                    </span>
+                                    <span className="  custom-color text-[18px] leading-[21px] font-medium"></span>
+                                  </div>
                                 </div>
-                              </Transition>
+                                <div className="flex flex-wrap gap-[41px] ml-[24px] my-[35px]">
+                                  {lottary &&
+                                    lottary?.eachGroupWin?.map(
+                                      (group, index) => (
+                                        <div className="flex flex-col items-start justify-start">
+                                          <h5 className="text-[#A2A2A2] text-[16px] leading-[19.2px] font-serif">
+                                            Match First {index + 1}
+                                          </h5>
+                                          <p className=" mt-[16px] custom-color-2 font-sans  ">
+                                            {parseInt(
+                                              lottary?.paymentMethod
+                                            ) === 0
+                                              ? "~BNB " +
+                                                ethers.utils.formatEther(group)
+                                              : "~BUSD " +
+                                                ethers.utils.formatEther(group)}
+                                          </p>
+                                        </div>
+                                      )
+                                    )}
 
-                              <button
-                                onClick={() => {
-                                  setIsClosed(!isClosed);
-                                }}
-                                className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   "
-                              >
-                                <div className="flex items-end">
-                                  <span className="text-[22px] text-primary -mb-1">
-                                    Details
-                                  </span>
-
-                                  <Down open={isClosed} />
+                                  <div className="flex flex-col flex-wrap items-start justify-start ">
+                                    <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
+                                      Burn
+                                    </h5>
+                                    <p className=" mt-[16px] custom-color-2 text-card text-[18px] leading-[21px] font-medium">
+                                      {parseInt(lottary?.paymentMethod) === 0
+                                        ? `~BNB ${
+                                            ethers.utils.formatEther(
+                                              lottary.totalCollectedValue
+                                            ) -
+                                            ethers.utils.formatEther(
+                                              lottary.eachGroupWin
+                                                .reduce(
+                                                  (sum, b) =>
+                                                    Number(sum) + Number(b),
+                                                  0
+                                                )
+                                                .toString()
+                                            )
+                                          }`
+                                        : `~BUSD ${
+                                            ethers.utils.formatEther(
+                                              lottary.totalCollectedValue
+                                            ) -
+                                            ethers.utils.formatEther(
+                                              lottary.eachGroupWin
+                                                .reduce(
+                                                  (sum, b) =>
+                                                    Number(sum) + Number(b),
+                                                  0
+                                                )
+                                                .toString()
+                                            )
+                                          }`}
+                                    </p>
+                                  </div>
                                 </div>
-                              </button>
-                            </div>
+                              </div>
+                            </AnimateHeight>
+
+                            <button
+                              onClick={() => {
+                                setIsClosed(!isClosed);
+                              }}
+                              className="flex   h-[101.86px] rounded-b-[51px] bg-[#EBEDF6]  items-center justify-center pt-[23px] pb-[25px] w-full  text-sm font-medium text-center hover:rounded-b-[51px] item-center dark:hover:bg-gray-300   "
+                            >
+                              <div className="flex items-end">
+                                <span className="text-[22px] text-primary -mb-1">
+                                  Details
+                                </span>
+
+                                <Down open={isClosed} />
+                              </div>
+                            </button>
                           </div>
                         </div>
                       </div>

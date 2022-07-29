@@ -25,12 +25,6 @@ const Winners = () => {
         console.log(err);
       });
   }, []);
-  // const mj = allUsers && JSON.parse(allUsers);
-  // console.log(
-  //   mj,
-
-  //   "alllusers"
-  // );
 
   var merged = allUsers && [].concat.apply([], Object.values(allUsers));
 

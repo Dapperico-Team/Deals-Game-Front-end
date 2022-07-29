@@ -4,7 +4,6 @@ import Insta from "../asset/instaLight.js";
 import Teleg from "../asset/telegLight.js";
 import Message from "../asset/MessageLight";
 import { ThemeContext } from "../context/ThemeContext";
-import { fromJSON } from "postcss";
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);

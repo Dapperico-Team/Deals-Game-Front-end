@@ -4,16 +4,19 @@ import { ethers } from "ethers";
 import dashed from "../asset/dashLine.svg";
 import Buy from "./button/Buy";
 import Down from "../asset/ArrowDown";
-import { Disclosure, Transition } from "@headlessui/react";
+
 import { ThemeContext } from "../context/ThemeContext";
 import "./getnow.css";
 import { useContractRead } from "wagmi";
 import { contractABI, contractAddress } from "../contract";
+import AnimateHeight from "react-animate-height";
 
 import Line from "../asset/Line.svg";
 import { DateTime } from "luxon";
 const GetNow = () => {
   const { theme } = useContext(ThemeContext);
+  const [isClosed, setIsClosed] = useState(false);
+
   const getCurrent = async () => {
     const res = await fetch("http://165.227.44.103:2000/api/currentLottary");
     const data = await res.json();
@@ -64,6 +67,11 @@ const GetNow = () => {
 
   console.log(rawstatus, "current");
 
+  const sum =
+    current &&
+    current?.eachGroupWins
+      .reduce((sum, b) => Number(sum) + Number(b), 0)
+      ?.toString();
   if (status == 0 || status == 1) {
     return (
       <section id="get" className="container mx-auto ">
@@ -73,11 +81,12 @@ const GetNow = () => {
 
         <div className="relative mx-auto flex items-center cut justify-center mt-[181px]">
           <div className="flex-col w-4/5 z-3 xl:w-1/2 first-line:flex">
+            <div class="left"></div>
             <div
               className={
                 theme === "dark"
                   ? "card-dark rounded-[51px] z-3"
-                  : "card rounded-[51px]  z-3"
+                  : "card   rounded-[51px]  z-3"
               }
             >
               <div className=" rounded-t-[50px] bg-title  ">
@@ -91,6 +100,7 @@ const GetNow = () => {
                   </p>
                 </div>
               </div>
+
               <div className="  text-card text-center leading-[48px] font-serif text-[40px] mt-[40px]">
                 Prize Pot
               </div>
@@ -103,7 +113,7 @@ const GetNow = () => {
                 {deals?.toString()?.split(",")?.length} &nbsp; DEALS
               </h3>
 
-              <img src={Line} alt="dashed" className="w-full"></img>
+              <img src={Line} alt="dashed" className="w-full -z-50"></img>
 
               <div className="mb-3 rounded-b-xl">
                 <div className="flex flex-col items-center text-center pb-[35px]  pt-[38px] ">
@@ -117,81 +127,60 @@ const GetNow = () => {
                 </div>
               </div>
               <div className=" z-6  cursor-pointer rounded-b-[51px] hover:rounded-b-[51px]  ">
-                <Disclosure>
-                  {({ open }) => (
-                    <>
-                      <Transition
-                        enter="transition duration-500 ease-out"
-                        enterFrom="transform scale-95 opacity-0"
-                        enterTo="transform scale-100 opacity-100"
-                        leave="transition duration-500 ease-out"
-                        leaveFrom="transform scale-100 opacity-100"
-                        leaveTo="transform scale-95 opacity-0"
-                      >
-                        <Disclosure.Panel className="px-8 pt-4 pb-2 text-sm text-gray-500 bg-transparent">
-                          <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
-                            {current?.eachGroupWins?.map((group, index) => (
-                              <div className="flex flex-col items-start justify-start">
-                                <h5 className="text-[#D1D1D1] text-[18px] leading-[21.33px] font-sans">
-                                  Match First {index + 1}
-                                </h5>
-                                <p className=" mt-[16px]  text-card font-sans  ">
-                                  {parseInt(current?.paymentMethod) === 0
-                                    ? "~BNB " + ethers.utils.formatEther(group)
-                                    : "~BUSD " +
-                                      ethers.utils.formatEther(group)}
-                                </p>
-                              </div>
-                            ))}
-                            <div className="flex flex-col flex-wrap items-start justify-start ">
-                              <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
-                                Burn
-                              </h5>
-                              <p className=" mt-[16px]  text-card leading-[21px]">
-                                {/* {current &&
-                                PaymentMethod &&
-                                parseInt(PaymentMethod) === 0
-                                  ? `~BNB ${
-                                      ethers.utils.formatEther(
-                                        current?.totalCollected
-                                      ) -
-                                      ethers.utils.formatEther(
-                                        current?.eachGroupWins
-                                          .reduce(
-                                            (sum, b) => Number(sum) + Number(b),
-                                            0
-                                          )
-                                          ?.toString()
-                                      )
-                                    }`
-                                  : `~BUSD ${
-                                      ethers.utils.formatEther(
-                                        current?.totalCollected
-                                      ) -
-                                      ethers.utils.formatEther(
-                                        current?.eachGroupWins
-                                          .reduce(
-                                            (sum, b) => Number(sum) + Number(b),
-                                            0
-                                          )
-                                          ?.toString()
-                                      )
-                                    }`} */}
-                              </p>
-                            </div>
+                <>
+                  <AnimateHeight
+                    id={"sliding_wrapper"}
+                    duration={400}
+                    height={isClosed ? "auto" : 0}
+                  >
+                    <div className="px-8 pt-4 pb-2 text-sm text-gray-500 bg-transparent">
+                      <div className="flex flex-wrap items-start justify-start gap-10 p-6 ">
+                        {current?.eachGroupWins?.map((group, index) => (
+                          <div className="flex flex-col items-start justify-start">
+                            <h5 className="text-[#D1D1D1] text-[18px] leading-[21.33px] font-sans">
+                              Match First {index + 1}
+                            </h5>
+                            <p className=" mt-[16px]  text-card font-sans  ">
+                              {parseInt(current?.paymentMethod) === 0
+                                ? "~BNB " + ethers.utils.formatEther(group)
+                                : "~BUSD " + ethers.utils.formatEther(group)}
+                            </p>
                           </div>
-                        </Disclosure.Panel>
-                      </Transition>
-                      <Disclosure.Button className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center  dark:hover:bg-gray-300    hover:bg-[#330e46]  ">
-                        <span className="font-sans font-normal   leading-[26.07px] text-[22px] text-card">
-                          Details
-                        </span>
+                        ))}
+                        <div className="flex flex-col flex-wrap items-start justify-start ">
+                          <h5 className="text-[#FF7A7A] text-[18px] leading-[21px] font-normal">
+                            Burn
+                          </h5>
+                          <p className=" mt-[16px]  text-card leading-[21px]">
+                            {current && PaymentMethod && PaymentMethod === 0
+                              ? `~BNB ${
+                                  current &&
+                                  ethers.utils.formatEther(
+                                    current?.totalCollected
+                                  ) - ethers.utils.formatEther(sum)
+                                }`
+                              : `~BUSD ${
+                                  current &&
+                                  ethers.utils.formatEther(
+                                    current?.totalCollected
+                                  ) - ethers.utils.formatEther(sum)
+                                }`}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </AnimateHeight>
+                  <button
+                    onClick={() => setIsClosed(!isClosed)}
+                    className="flex  rounded-b-[51px] bg-title items-center justify-center pt-[23px] pb-[25px] w-full h-full text-sm font-medium text-center hover:rounded-b-[51px] item-center  dark:hover:bg-gray-300    hover:bg-[#330e46]  "
+                  >
+                    <span className="font-sans font-normal   leading-[26.07px] text-[22px] text-card">
+                      Details
+                    </span>
 
-                        <Down theme={theme} open={open} />
-                      </Disclosure.Button>
-                    </>
-                  )}
-                </Disclosure>
+                    <Down theme={theme} open={isClosed} />
+                  </button>
+                </>
               </div>
             </div>
             {/* <div className="absolute  top-[304px] bg-primary rounded-full  -left-[40px] z-[9999999] w-[86px] h-[93.96px]"></div> */}
